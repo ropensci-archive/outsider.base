@@ -1,8 +1,3 @@
-# LIBS
-library(outsider)
-library(testthat)
-
-# RUNNING
 context('Testing \'log\'')
 test_that('log_set() works', {
   on.exit(outsider.base:::default_log_set())
