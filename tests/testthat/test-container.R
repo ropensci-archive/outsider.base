@@ -1,14 +1,16 @@
 context('Testing \'container\'')
 test_that('container_init() works', {
   with_mock(
-    `outsider.base:::ids_get` = function(...) c('img' = img, 'cntnr' = cntnr,
-                                                'tag' = tag),
+    `outsider.base:::docker_ids_get` = function(...) c('img' = img,
+                                                       'cntnr' = cntnr,
+                                                       'tag' = tag),
     expect_true(inherits(outsider.base:::container_init(pkgnm = pkgnm),
                          'container'))
   )
   with_mock(
-    `outsider.base:::ids_get` = function(...) c('img' = img, 'cntnr' = cntnr,
-                                                'tag' = tag),
+    `outsider.base:::docker_ids_get` = function(...) c('img' = img,
+                                                       'cntnr' = cntnr,
+                                                       'tag' = tag),
     expect_true(inherits(outsider.base:::container_init(pkgnm = pkgnm),
                          'container'))
   )
@@ -29,8 +31,9 @@ test_that('run.container() works', {
 })
 test_that('print.container() works', {
    with_mock(
-    `outsider.base:::ids_get` = function(...) c('img' = img, 'cntnr' = cntnr,
-                                                'tag' = tag),
+    `outsider.base:::docker_ids_get` = function(...) c('img' = img,
+                                                       'cntnr' = cntnr,
+                                                       'tag' = tag),
     `outsider.base:::status.container` = function(x, ...) 'This is a mock',
     container <- outsider.base:::container_init(pkgnm = pkgnm),
     expect_null(print(container))
@@ -40,8 +43,9 @@ test_that('container methods work', {
   # set-up
   outsider.base:::docker_build(img = img, url_or_path = dockerfile)
   container <- with_mock(
-    `outsider.base:::ids_get` = function(...) c('img' = img, 'cntnr' = cntnr,
-                                                'tag' = tag),
+    `outsider.base:::docker_ids_get` = function(...) c('img' = img,
+                                                       'cntnr' = cntnr,
+                                                       'tag' = tag),
     outsider.base:::container_init(pkgnm = pkgnm)
   )
   # pull down
