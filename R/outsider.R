@@ -50,7 +50,6 @@ NULL
 #' \item{ignore_errors}{Prevent errors being raised}
 #' @export
 #' @example examples/outsider-class.R
-# TODO: example needs to avoid pulling from GitHub over and over.
 outsider_init <- function(pkgnm, cmd = NA, arglist = NULL, wd = NULL,
                           files_to_send = NULL, ignore_errors = FALSE) {
   container <- container_init(pkgnm = pkgnm)

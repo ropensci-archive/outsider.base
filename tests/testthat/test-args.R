@@ -7,30 +7,31 @@ context('Testing \'args\'')
 test_that('to_basename() works', {
   expctd <- list.files(getwd())[1]
   args <- c(file.path(getwd(), expctd), 'arg1', 'arg2')
-  expect_true(outsider:::to_basename(args)[1] == expctd)
+  expect_true(outsider.base:::to_basename(args)[1] == expctd)
 })
 test_that('is_filepath() works', {
   files <- list.files(getwd())
-  expect_true(all(outsider:::is_filepath(files)))
+  expect_true(all(outsider.base:::is_filepath(files)))
 })
-test_that('.args_get() works', {
-  res <- arglist_get(outsider:::gh_api_url, 'b', 'c')
-  expect_equal(res, c(outsider:::gh_api_url, 'b', 'c'))
+test_that('args_get() works', {
+  a <- 'longword'
+  res <- arglist_get(a, 'b', 'c')
+  expect_equal(res, c(a, 'b', 'c'))
   # check different depths
   foo <- function(...) {
     arglist_get(...)
   }
-  res <- foo(outsider:::gh_api_url, 'b', 'c')
-  expect_equal(res, c(outsider:::gh_api_url, 'b', 'c'))
+  res <- foo(a, 'b', 'c')
+  expect_equal(res, c(a, 'b', 'c'))
   foo2 <- function(...) {
     foo(...)
   }
-  res <- foo2(outsider:::gh_api_url, 'b', 'c')
-  expect_equal(res, c(outsider:::gh_api_url, 'b', 'c'))
+  res <- foo2(a, 'b', 'c')
+  expect_equal(res, c(a, 'b', 'c'))
 })
-test_that('.filestosend_get() works', {
+test_that('filestosend_get() works', {
   # nothin in, nothin out
-  expect_equal(.filestosend_get(character(0)), character())
+  expect_equal(filestosend_get(character(0)), character())
   flnm <- 'testfile.txt'
   write('test', file = flnm)
   on.exit(file.remove(flnm))
@@ -39,31 +40,34 @@ test_that('.filestosend_get() works', {
   res <- filestosend_get(c('notafile', flnm), wd = getwd())
   expect_true(file.path(getwd(), flnm) %in% res)
 })
-test_that('.wd_get() works', {
+test_that('wd_get() works', {
   # nothin in, nothin out
-  expect_equal(.wd_get(character(0)), character())
+  expect_equal(wd_get(character(0)), character())
   arglist <- c('1', '-wd', 'thisiswd/', '--otherarg')
-  expect_equal(.wd_get(arglist), getwd())
-  expect_equal(.wd_get(arglist, key = '-wd'), 'thisiswd/')
+  expect_equal(wd_get(arglist), getwd())
+  expect_equal(wd_get(arglist, key = '-wd'), 'thisiswd/')
   arglist <- c('thisiswd/inputfile', '--otherarg', '--index', '1')
-  expect_equal(.wd_get(arglist, i = 1, key = '-wd'), 'thisiswd/inputfile')
+  expect_equal(wd_get(arglist, i = 1, key = '-wd'), 'thisiswd/inputfile')
   arglist <- c('inputfile', '--otherarg', '--index', '1', '-wd', 'thisiswd/')
-  expect_equal(.wd_get(arglist, i = 1, key = '-wd'), 'thisiswd/')
+  expect_equal(wd_get(arglist, i = 1, key = '-wd'), 'thisiswd/')
 })
-test_that('.dirpath_get() works', {
+test_that('dirpath_get() works', {
   # nothin in, nothin out
-  expect_equal(.dirpath_get(character(0)), character())
+  expect_equal(dirpath_get(character(0)), character())
   # if dirpath already, dirpath returned
-  datapth <- outsider:::datadir_get()
-  expect_equal(.dirpath_get(datapth), datapth)
+  tmp <- tempdir()
+  expect_equal(dirpath_get(tmp), tmp)
   # drop filename
-  expect_equal(.dirpath_get(paste0(datapth, 'afile.txt')), datapth)
+  expect_equal(dirpath_get(file.path(tmp, 'afile.txt')), file.path(tmp, ''))
 })
-test_that('.arglist_parse() works', {
+test_that('arglist_parse() works', {
   # nothin in, nothin out
-  expect_equal(.arglist_parse(character(0)), character())
+  expect_equal(arglist_parse(character(0)), character())
   # path normalisation
-  res <- arglist_parse(arglist = paste0(outsider:::datadir_get()))
+  tmp <- file.path(tempdir(), 'data')
+  dir.create(tmp)
+  on.exit(unlink(tmp))
+  res <- arglist_parse(arglist = tmp)
   expect_equal(res, 'data')
   res <- arglist_parse(arglist = 'not/a/real/file/path')
   expect_equal(res, 'not/a/real/file/path')

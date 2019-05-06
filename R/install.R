@@ -27,7 +27,7 @@ install <- function(flpth, tag = 'latest', pull = FALSE) {
     }
   })
   # TODO: update quiet depending on log data
-  pkgnm <- devtools::install(pkg = flpth, force = TRUE, quiet = FALSE,
+  pkgnm <- devtools::install(pkg = flpth, force = TRUE, quiet = TRUE,
                              reload = TRUE, build = FALSE)
   if (is_installed(pkgnm = pkgnm)) {
     if (pull) {
