@@ -77,9 +77,10 @@ docker_ids_get <- function(pkgnm) {
   meta <- meta_get(pkgnm = pkgnm)
   nps <- docker_ps_count()
   imgs <- docker_img_ls()
+  img <- img_get(pkgnm)
   #print(imgs)
   if ('tag' %in% colnames(imgs)) {
-    pull <- imgs[['repository']] == img_get(pkgnm)
+    pull <- imgs[['repository']] == img
     if (any(pull)) {
       tag <- imgs[pull, 'tag'][[1]]
       tag <- tag[[1]]

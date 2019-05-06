@@ -7,14 +7,12 @@
 \alias{run.outsider}
 \title{Construct outsider object}
 \usage{
-outsider_init(repo, cmd = NA, arglist = NULL, wd = NULL,
+outsider_init(pkgnm, cmd = NA, arglist = NULL, wd = NULL,
   files_to_send = NULL, ignore_errors = FALSE)
 
 \method{run}{outsider}(x)
 }
 \arguments{
-\item{repo}{Repository of the outsider module}
-
 \item{cmd}{Command to be called in the container}
 
 \item{arglist}{Arguments for command, character vector}
@@ -31,7 +29,6 @@ outsider_init(repo, cmd = NA, arglist = NULL, wd = NULL,
 }
 \value{
 A list of class \code{outsider} with the following items:
-\item{repo}{Repository of the outsider module}
 \item{pkgnm}{Package name of the outsider module}
 \item{cmd}{Command to be called in the container}
 \item{arglist}{Arguments for command, character vector}

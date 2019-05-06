@@ -18,8 +18,6 @@ filepath.
 }
 \seealso{
 Other private: \code{\link{default_log_set}},
-  \code{\link{examples_test}}, \code{\link{fnames_get}},
-  \code{\link{import_test}}, \code{\link{install_test}},
   \code{\link{log_get}}, \code{\link{to_basename}}
 }
 \concept{private}

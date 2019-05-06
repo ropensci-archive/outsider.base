@@ -34,7 +34,6 @@ NULL
 #' \code{.run()}.
 #' The \code{arglist}, \code{wd} or \code{files_to_send} do not need to be
 #' defined for the outsider to be run.
-#' @param repo Repository of the outsider module
 #' @param cmd Command to be called in the container
 #' @param arglist Arguments for command, character vector
 #' @param wd Directory to which program generated files will be returned
@@ -42,7 +41,6 @@ NULL
 #' @param ignore_errors Ignore raised errors? Default FALSE.
 #' @param ... Additional print arguments
 #' @return A list of class \code{outsider} with the following items:
-#' \item{repo}{Repository of the outsider module}
 #' \item{pkgnm}{Package name of the outsider module}
 #' \item{cmd}{Command to be called in the container}
 #' \item{arglist}{Arguments for command, character vector}
@@ -53,12 +51,11 @@ NULL
 #' @export
 #' @example examples/outsider-class.R
 # TODO: example needs to avoid pulling from GitHub over and over.
-outsider_init <- function(repo, cmd = NA, arglist = NULL, wd = NULL,
+outsider_init <- function(pkgnm, cmd = NA, arglist = NULL, wd = NULL,
                           files_to_send = NULL, ignore_errors = FALSE) {
-  pkgnm <- repo_to_pkgnm(repo = repo)
   container <- container_init(pkgnm = pkgnm)
-  parts <- list(repo = repo, pkgnm = pkgnm, cmd = cmd, arglist = arglist,
-                wd = wd, files_to_send = files_to_send, container = container,
+  parts <- list(pkgnm = pkgnm, cmd = cmd, arglist = arglist, wd = wd,
+                files_to_send = files_to_send, container = container,
                 ignore_errors = FALSE)
   structure(parts, class = 'outsider')
 }
@@ -109,7 +106,6 @@ run.outsider <- function(x) {
 print.outsider <- function(x, ...) {
   cat_line(cli::rule())
   cat_line(crayon::bold('Outsider module:'))
-  cat_line('Repo ', char(x[['repo']]))
   cat_line('Package ', char(x[['pkgnm']]))
   cat_line('Command ', char(x[['cmd']]))
   arglist <- lapply(X = x[['arglist']], FUN = function(x) {

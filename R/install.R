@@ -26,8 +26,9 @@ install <- function(flpth, tag = 'latest', pull = FALSE) {
       uninstall(pkgnm = pkgnm)
     }
   })
-  pkgnm <- devtools::install_local(path = flpth, force = TRUE, quiet = TRUE,
-                                   reload = TRUE)
+  # TODO: update quiet depending on log data
+  pkgnm <- devtools::install(pkg = flpth, force = TRUE, quiet = FALSE,
+                             reload = TRUE, build = FALSE)
   if (is_installed(pkgnm = pkgnm)) {
     if (pull) {
       success <- docker_pull(img = img_get(pkgnm = pkgnm), tag = tag)

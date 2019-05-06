@@ -43,7 +43,6 @@ container_init(pkgnm)
 }
 \value{
 A list of class \code{container} with the following items:
-\item{repo}{Repository of the outsider module}
 \item{pkgnm}{Package name of the outsider module}
 \item{prgrm}{Command to be called in the container}
 \item{cntnr}{Unique Docker container name}
