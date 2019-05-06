@@ -1,0 +1,11 @@
+^codemeta\.json$
+^.*\.Rproj$
+^\.Rproj\.user$
+om.yml
+other/
+logo.png
+.travis.yml
+.github/
+_pkgdown.yml
+examples/
+om..hello.world/
