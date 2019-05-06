@@ -1,13 +1,13 @@
 context('Testing \'console\'')
 test_that('.onAttach() works', {
-  expect_true(outsider:::.onAttach())
+  expect_true(outsider.base:::.onAttach())
 })
 test_that('char() works', {
-  expect_true(is.character(outsider:::char('char')))
+  expect_true(is.character(outsider.base:::char('char')))
 })
 test_that('stat() works', {
-  expect_true(is.character(outsider:::stat('stat')))
+  expect_true(is.character(outsider.base:::stat('stat')))
 })
 test_that('cat_line() works', {
-  expect_null(outsider:::cat_line('cat this'))
+  expect_null(outsider.base:::cat_line('cat this'))
 })
