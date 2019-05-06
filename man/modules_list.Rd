@@ -6,9 +6,6 @@
 \usage{
 modules_list()
 }
-\arguments{
-\item{pkgnm}{Package name of module}
-}
 \value{
 Logical
 }

@@ -2,15 +2,18 @@
 #' @name modules_list
 #' @title List all installed outsider modules
 #' @description Return the image and container names for a module
-#' @param pkgnm Package name of module
 #' @return Logical
 #' @family ids
+#' @export
 modules_list <- function() {
   pkgs <- installed_pkgs()
   pkgnms <- unname(pkgs[, 'Package'])
   libpaths <- unname(pkgs[, 'LibPath'])
   yamls <- file.path(libpaths, pkgnms, 'om.yml')
   pkgnms[file.exists(yamls)]
+}
+installed_pkgs <- function(...) {
+  utils::installed.packages(...)
 }
 
 # TODO: move to outsider?

@@ -1,8 +1,3 @@
-# LIBS
-library(outsider)
-library(testthat)
-
-# RUNNING
 context('Testing \'args\'')
 test_that('to_basename() works', {
   expctd <- list.files(getwd())[1]
@@ -13,21 +8,21 @@ test_that('is_filepath() works', {
   files <- list.files(getwd())
   expect_true(all(outsider.base:::is_filepath(files)))
 })
-test_that('args_get() works', {
-  a <- 'longword'
-  res <- arglist_get(a, 'b', 'c')
-  expect_equal(res, c(a, 'b', 'c'))
+test_that('arglist_get() works', {
+  # TODO: why can't I specify an assigned variable as an argument?
+  res <- arglist_get(outsider.base:::.packageName, 'b', '1')
+  expect_equal(res, c(outsider.base:::.packageName, 'b', '1'))
   # check different depths
   foo <- function(...) {
     arglist_get(...)
   }
-  res <- foo(a, 'b', 'c')
-  expect_equal(res, c(a, 'b', 'c'))
+  res <- foo(outsider.base:::.packageName, 'b', '2')
+  expect_equal(res, c(outsider.base:::.packageName, 'b', '2'))
   foo2 <- function(...) {
     foo(...)
   }
-  res <- foo2(a, 'b', 'c')
-  expect_equal(res, c(a, 'b', 'c'))
+  res <- foo2(outsider.base:::.packageName, 'b', '3')
+  expect_equal(res, c(outsider.base:::.packageName, 'b', '3'))
 })
 test_that('filestosend_get() works', {
   # nothin in, nothin out

@@ -4,21 +4,23 @@
 #' @description Return TRUE if module is installed.
 #' @param pkgnm Package name
 #' @return logical(1)
+#' @export
 is_installed <- function(pkgnm) {
   installed <- modules_list()
   pkgnm %in% installed
-}
-installed_pkgs <- function(...) {
-  utils::installed.packages(...)
 }
 
 #' @name install
 #' @title Install module
 #' @description Install outsider module: install R package, build/pull Docker
-#' image.
+#' image. (Will only pull if image is available via DockerHub)
+#' Returns 0 if all successful, 1 if only R package installs, 2 if R package
+#' and Docker image fail.
 #' @param flpth File path to module directory.
 #' @param tag Docker tag, default 'latest'
-#' @return logical
+#' @param pull Pull from Docker Hub or build locally? Default, FALSE.
+#' @return Integer
+#' @export
 install <- function(flpth, tag = 'latest', pull = FALSE) {
   success <- FALSE
   on.exit(expr = {
@@ -27,32 +29,37 @@ install <- function(flpth, tag = 'latest', pull = FALSE) {
     }
   })
   # TODO: update quiet depending on log data
-  pkgnm <- devtools::install(pkg = flpth, force = TRUE, quiet = TRUE,
-                             reload = TRUE, build = FALSE)
+  pkg <- devtools::as.package(x = flpth)
+  pkgnm <- pkg[['package']]
+  r_success <- devtools::install(pkg = pkg, force = TRUE, quiet = TRUE,
+                                 reload = TRUE, build = FALSE)
+  d_success <- FALSE
   if (is_installed(pkgnm = pkgnm)) {
     if (pull) {
-      success <- docker_pull(img = img_get(pkgnm = pkgnm), tag = tag)
+      d_success <- docker_pull(img = img_get(pkgnm = pkgnm), tag = tag)
     } else {
       dockerfile <- file.path(flpth, 'dockerfiles', tag)
-      success <- docker_build(img = img_get(pkgnm = pkgnm),
-                              url_or_path = dockerfile, tag = tag)
+      d_success <- docker_build(img = img_get(pkgnm = pkgnm),
+                                url_or_path = dockerfile, tag = tag)
     }
   }
-  invisible(success)
+  success <- r_success & d_success
+  res <- 2L - as.integer(r_success + d_success)
+  invisible(res)
 }
 
 #' @name uninstall
 #' @title Uninstall and remove a module
 #' @description Remove outsider module: uninstall package, delete Docker image.
 #' @param pkgnm Package name
-#' @details If program is successfully removed from your system, TRUE is
-#' returned else FALSE.
+#' @details If program is successfully removed TRUE is returned, else FALSE.
 #' @return Logical(1)
 #' @export
+# TODO: don't call error if no docker image
 uninstall <- function(pkgnm) {
   if (is_installed(pkgnm = pkgnm)) {
     # TODO: are we sure this would remove all tagged version of an image?
-    img <- meta_get(pkgnm = pkgnm)[['image']]
+    img <- img_get(pkgnm = pkgnm)
     try(docker_img_rm(img = img), silent = TRUE)
     devtools::uninstall(pkg = devtools::inst(pkgnm), quiet = TRUE,
                         unload = TRUE)

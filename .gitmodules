@@ -1,3 +1,6 @@
 [submodule "om..hello.world"]
 	path = om..hello.world
 	url = https://github.com/DomBennett/om..hello.world
+[submodule "inst/extdata/om..hello.world"]
+	path = inst/extdata/om..hello.world
+	url = https://github.com/DomBennett/om..hello.world

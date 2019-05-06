@@ -25,7 +25,7 @@ key exists in the arglist and will return its corresponding value.
 Alternatively, the working directory may be determined by the first argument
 (e.g. an input file), in which case setting \code{i=1} will return the first
 argument in the arglist.
-If an input file is returned, a user can use \code{\link{.dirpath_get}} to
+If an input file is returned, a user can use \code{\link{dirpath_get}} to
 convert the file path to a directory path.
 If both \code{key} and \code{i} are provided, \code{key} takes precedence.
 If no \code{key} or \code{i} is provided and/or no working directory is
@@ -34,11 +34,11 @@ directory.
 If no arguments are provided, returns empty character vector.
 }
 \examples{
-library(outsider)
+library(outsider.base)
 # wd is determined by key argument
 arglist <- c('-a', 10, '-wd', 'path/to/wd', '-b', 'model2')
-(.wd_get(arglist = arglist, key = '-wd'))
+(wd_get(arglist = arglist, key = '-wd'))
 # wd is determined by an index
 arglist <- c('path/to/wd', '-a', 10, '-b', 'model2')
-(.wd_get(arglist = arglist, i = 1))
+(wd_get(arglist = arglist, i = 1))
 }

@@ -1,15 +1,3 @@
-# LIBS
-library(outsider)
-library(testthat)
-
-# Vars ----
-repo <- outsider:::vars_get('repo')
-pkgnm <- outsider:::vars_get('pkgnm')
-img <- outsider:::vars_get('img')
-cntnr <- outsider:::vars_get('cntnr')
-tag <- 'latest'
-
-# RUNNING ----
 context('Testing \'container\'')
 test_that('container_init() works', {
   with_mock(
@@ -21,7 +9,7 @@ test_that('container_init() works', {
   with_mock(
     `outsider:::ids_get` = function(...) c('img' = img, 'cntnr' = cntnr,
                                            'tag' = tag),
-    expect_true(inherits(outsider:::container_init(repo = repo),
+    expect_true(inherits(outsider:::container_init(pkgnm = pkgnm),
                          'container'))
   )
   expect_error(outsider:::container_init())
@@ -49,7 +37,7 @@ test_that('print.container() works', {
 })
 test_that('container methods work', {
   # set-up
-  outsider:::docker_pull(img = img)
+  outsider:::docker_build(img = img, url_or_path = dockerfile)
   container <- with_mock(
     `outsider:::ids_get` = function(...) c('img' = img, 'cntnr' = cntnr,
                                            'tag' = tag),

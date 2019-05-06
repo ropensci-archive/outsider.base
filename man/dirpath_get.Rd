@@ -19,12 +19,12 @@ path, the argument will be returned unchanged. If nothing is provided,
 nothing is returned (i.e. \code{character(0)}).
 }
 \examples{
-library(outsider)
+library(outsider.base)
 # get the parent directory from a filepath
 drpth <- tempdir()
 flpth <- file.path(drpth, 'testfile')
 file.create(flpth)
-(.dirpath_get(flpth = flpth) == drpth)
-(.dirpath_get(flpth = drpth) == drpth)
+(dirpath_get(flpth = flpth) == drpth)
+(dirpath_get(flpth = drpth) == drpth)
 file.remove(flpth)
 }

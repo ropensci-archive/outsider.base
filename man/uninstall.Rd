@@ -16,6 +16,5 @@ Logical(1)
 Remove outsider module: uninstall package, delete Docker image.
 }
 \details{
-If program is successfully removed from your system, TRUE is
-returned else FALSE.
+If program is successfully removed TRUE is returned, else FALSE.
 }

@@ -1,4 +1,4 @@
-library(outsider)
+library(outsider.base)
 # set-up: create wd and files to send
 wd <- file.path(tempdir(), 'results')
 dir.create(wd)
@@ -10,10 +10,10 @@ file.create(file2)
 
 # identify files to be sent to container
 arglist <- c('-in', file1, '-out', file2)
-(.filestosend_get(arglist = arglist))
+(filestosend_get(arglist = arglist))
 # works with -wd
 arglist <- c('-in', 'file1', '-out', 'file2', '-wd', wd)
-(.filestosend_get(arglist = arglist, wd = wd))
+(filestosend_get(arglist = arglist, wd = wd))
 
 
 # clean-up

@@ -4,15 +4,20 @@
 \alias{outsider-class}
 \alias{outsider_init}
 \alias{outsider-methods}
+\alias{run}
 \alias{run.outsider}
 \title{Construct outsider object}
 \usage{
 outsider_init(pkgnm, cmd = NA, arglist = NULL, wd = NULL,
   files_to_send = NULL, ignore_errors = FALSE)
 
-\method{run}{outsider}(x)
+run(x, ...)
+
+\method{run}{outsider}(x, ...)
 }
 \arguments{
+\item{pkgnm}{Name of the installed R package for the outsider module}
+
 \item{cmd}{Command to be called in the container}
 
 \item{arglist}{Arguments for command, character vector}
@@ -25,7 +30,7 @@ outsider_init(pkgnm, cmd = NA, arglist = NULL, wd = NULL,
 
 \item{x}{outsider object}
 
-\item{...}{Additional print arguments}
+\item{...}{Additional arguments}
 }
 \value{
 A list of class \code{outsider} with the following items:

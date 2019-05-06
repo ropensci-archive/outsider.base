@@ -1,20 +1,10 @@
-#' outsider: Install and run programs, outside of R, inside of R
-#'
-#' The outsider package facilitates the installation and running of external
-#' software by interfacing with docker (\url{https://www.docker.com/}).
-#' External software are contained within mini-R-packages, called "outsider
-#' modules" and can be installed directly to a user's computer through GitHub
-#' (\url{https://github.com/}). The outsider package comes with a series of
-#' functions for identifying and installing these outsider modules ("user"
-#' functions). The package also comes with helper functions for
-#' developing new outsider modules for hosting additional external programs
-#' and software ("developer" functions).
+#' outsider.base: Base Package for outsider.
 #' 
 #' For more information visit the outsider website
 #' (\url{https://antonellilab.github.io/outsider/}).
 #'
 #' @docType package
-#' @name outsider
+#' @name outsider.base
 NULL
 
 #' @name outsider-class
@@ -34,12 +24,13 @@ NULL
 #' \code{.run()}.
 #' The \code{arglist}, \code{wd} or \code{files_to_send} do not need to be
 #' defined for the outsider to be run.
+#' @param pkgnm Name of the installed R package for the outsider module
 #' @param cmd Command to be called in the container
 #' @param arglist Arguments for command, character vector
 #' @param wd Directory to which program generated files will be returned
 #' @param files_to_send Files to be sent to container
 #' @param ignore_errors Ignore raised errors? Default FALSE.
-#' @param ... Additional print arguments
+#' @param ... Additional arguments
 #' @return A list of class \code{outsider} with the following items:
 #' \item{pkgnm}{Package name of the outsider module}
 #' \item{cmd}{Command to be called in the container}
@@ -59,6 +50,7 @@ outsider_init <- function(pkgnm, cmd = NA, arglist = NULL, wd = NULL,
   structure(parts, class = 'outsider')
 }
 
+#' @rdname outsider-class
 #' @export
 run <- function(x, ...) {
   UseMethod('run', x)
@@ -67,7 +59,7 @@ run <- function(x, ...) {
 #' @rdname outsider-class
 #' @param x outsider object
 #' @export
-run.outsider <- function(x) {
+run.outsider <- function(x, ...) {
   if (is.na(x[['cmd']])) {
     stop('Command not set')
   }

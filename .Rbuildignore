@@ -1,11 +1,17 @@
+# Top-level
 ^codemeta\.json$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-om.yml
-other/
-logo.png
-.travis.yml
-.github/
-_pkgdown.yml
-examples/
-om..hello.world/
+^other$
+^logo.png$
+^.travis.yml$
+^.github$
+^examples$
+# Example module
+^inst/extdata/om..hello.world/README.md$
+^inst/extdata/om..hello.world/.Rbuildignore$
+^inst/extdata/om..hello.world/.git$
+^inst/extdata/om..hello.world/.gitignore$
+^inst/extdata/om..hello.world/.Rhistory$
+^inst/extdata/om..hello.world/.travis.yml$
+^inst/extdata/om..hello.world/.Rproj.user$

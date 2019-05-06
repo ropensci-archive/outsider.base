@@ -10,11 +10,15 @@ install(flpth, tag = "latest", pull = FALSE)
 \item{flpth}{File path to module directory.}
 
 \item{tag}{Docker tag, default 'latest'}
+
+\item{pull}{Pull from Docker Hub or build locally? Default, FALSE.}
 }
 \value{
-logical
+Integer
 }
 \description{
 Install outsider module: install R package, build/pull Docker
-image.
+image. (Will only pull if image is available via DockerHub)
+Returns 0 if all successful, 1 if only R package installs, 2 if R package
+and Docker image fail.
 }
