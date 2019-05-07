@@ -4,7 +4,7 @@
 \alias{modules_list}
 \title{List all installed outsider modules}
 \usage{
-modules_list()
+modules_list(show_images = FALSE)
 }
 \value{
 Logical
@@ -14,7 +14,6 @@ Return the image and container names for a module
 }
 \seealso{
 Other ids: \code{\link{docker_ids_get}},
-  \code{\link{guess_pkgnm}}, \code{\link{img_get}},
-  \code{\link{meta_get}}
+  \code{\link{img_get}}, \code{\link{meta_get}}
 }
 \concept{ids}

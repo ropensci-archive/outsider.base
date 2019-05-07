@@ -16,8 +16,7 @@ Logical
 Return the image and container names for a module
 }
 \seealso{
-Other ids: \code{\link{guess_pkgnm}},
-  \code{\link{img_get}}, \code{\link{meta_get}},
+Other ids: \code{\link{img_get}}, \code{\link{meta_get}},
   \code{\link{modules_list}}
 }
 \concept{ids}

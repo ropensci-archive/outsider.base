@@ -4,7 +4,7 @@
 \alias{install}
 \title{Install module}
 \usage{
-install(flpth, tag = "latest", pull = FALSE)
+install(flpth, tag = "latest", pull = FALSE, verbose = TRUE)
 }
 \arguments{
 \item{flpth}{File path to module directory.}
@@ -12,6 +12,8 @@ install(flpth, tag = "latest", pull = FALSE)
 \item{tag}{Docker tag, default 'latest'}
 
 \item{pull}{Pull from Docker Hub or build locally? Default, FALSE.}
+
+\item{verbose}{Be verbose? Default TRUE.}
 }
 \value{
 Integer

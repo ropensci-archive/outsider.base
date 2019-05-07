@@ -19,9 +19,11 @@ is_installed <- function(pkgnm) {
 #' @param flpth File path to module directory.
 #' @param tag Docker tag, default 'latest'
 #' @param pull Pull from Docker Hub or build locally? Default, FALSE.
+#' @param verbose Be verbose? Default TRUE.
 #' @return Integer
 #' @export
-install <- function(flpth, tag = 'latest', pull = FALSE) {
+# TODO: uninstall if already exists
+install <- function(flpth, tag = 'latest', pull = FALSE, verbose = TRUE) {
   success <- FALSE
   on.exit(expr = {
     if (!success) {
@@ -31,7 +33,7 @@ install <- function(flpth, tag = 'latest', pull = FALSE) {
   # TODO: update quiet depending on log data
   pkg <- devtools::as.package(x = flpth)
   pkgnm <- pkg[['package']]
-  r_success <- devtools::install(pkg = pkg, force = TRUE, quiet = TRUE,
+  r_success <- devtools::install(pkg = pkg, force = TRUE, quiet = !verbose,
                                  reload = TRUE, build = FALSE)
   d_success <- FALSE
   if (is_installed(pkgnm = pkgnm)) {

@@ -17,7 +17,6 @@ Return Docker image name using DockerHub username, if available.
 }
 \seealso{
 Other ids: \code{\link{docker_ids_get}},
-  \code{\link{guess_pkgnm}}, \code{\link{meta_get}},
-  \code{\link{modules_list}}
+  \code{\link{meta_get}}, \code{\link{modules_list}}
 }
 \concept{ids}

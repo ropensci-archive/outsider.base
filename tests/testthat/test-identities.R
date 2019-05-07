@@ -3,9 +3,6 @@ test_that('modules_list() works', {
   res <- outsider.base::modules_list()
   expect_type(res, 'character')
 })
-test_that('guess_repo() works', {
-  expect_error(outsider.base:::guess_repo('notamodule'))
-})
 test_that('meta_get() works', {
   res <- with_mock(
     `yaml::read_yaml` = function(...) list(),

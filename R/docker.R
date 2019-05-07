@@ -6,6 +6,7 @@
 #' @description Raises an error if docker is not available.
 #' @return NULL
 #' @family private-check
+#' @export
 is_docker_available <- function() {
   installed <- is_docker_installed()
   if (!installed) {
