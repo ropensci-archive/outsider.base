@@ -4,7 +4,7 @@
 \alias{modules_list}
 \title{List all installed outsider modules}
 \usage{
-modules_list(show_images = FALSE)
+modules_list()
 }
 \value{
 Logical

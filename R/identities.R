@@ -5,7 +5,7 @@
 #' @return Logical
 #' @family ids
 #' @export
-modules_list <- function(show_images = FALSE) {
+modules_list <- function() {
   pkgs <- installed_pkgs()
   pkgnms <- unname(pkgs[, 'Package'])
   libpaths <- unname(pkgs[, 'LibPath'])
@@ -25,7 +25,8 @@ installed_pkgs <- function(...) {
 #' @export
 meta_get <- function(pkgnm) {
   res <- yaml::read_yaml(file = system.file('om.yml', package = pkgnm))
-  res[['image']] <- gsub(pattern = '\\.', replacement = '_', x = pkgnm)
+  # . are not allowed in image names
+  res[['image']] <- gsub(pattern = '\\.+', replacement = '_', x = pkgnm)
   res[['package']] <- pkgnm
   res
 }

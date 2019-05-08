@@ -65,6 +65,6 @@ uninstall <- function(pkgnm) {
     try(docker_img_rm(img = img), silent = TRUE)
     devtools::uninstall(pkg = devtools::inst(pkgnm), quiet = TRUE,
                         unload = TRUE)
-  }
+    }
   invisible(!is_installed(pkgnm = pkgnm))
 }
