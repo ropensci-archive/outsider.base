@@ -22,7 +22,7 @@ is_installed <- function(pkgnm) {
 #' @param verbose Be verbose? Default TRUE.
 #' @return Integer
 #' @export
-# TODO: uninstall if already exists
+# TODO: uninstall if already exists?
 install <- function(flpth, tag = 'latest', pull = FALSE, verbose = TRUE) {
   success <- FALSE
   on.exit(expr = {
@@ -30,7 +30,6 @@ install <- function(flpth, tag = 'latest', pull = FALSE, verbose = TRUE) {
       uninstall(pkgnm = pkgnm)
     }
   })
-  # TODO: update quiet depending on log data
   pkg <- devtools::as.package(x = flpth)
   pkgnm <- pkg[['package']]
   r_success <- devtools::install(pkg = pkg, force = TRUE, quiet = !verbose,
@@ -38,9 +37,20 @@ install <- function(flpth, tag = 'latest', pull = FALSE, verbose = TRUE) {
   d_success <- FALSE
   if (is_installed(pkgnm = pkgnm)) {
     if (pull) {
-      d_success <- docker_pull(img = img_get(pkgnm = pkgnm), tag = tag)
+      img <- img_get(pkgnm = pkgnm)
+      d_success <- docker_pull(img = img, tag = tag)
+      if (!d_success) {
+        msg <- paste0('Failed to pull ', char(paste0(img, ':', tag)),
+                      'Try a different tag, checking Docker Hub or',
+                      ' building manually.')
+        message(msg)
+      }
     } else {
-      dockerfile <- file.path(flpth, 'dockerfiles', tag)
+      dockerfile <- system.file('dockerfiles', tag, package = pkgnm)
+      if (!dir.exists(dockerfile)) {
+        msg <- paste0('No tag ', char(tag), ' for ', char(pkgnm))
+        message(msg)
+      }
       d_success <- docker_build(img = img_get(pkgnm = pkgnm),
                                 url_or_path = dockerfile, tag = tag)
     }

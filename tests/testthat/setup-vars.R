@@ -15,7 +15,7 @@ if (dir.exists(mdl_flpth)) {
 if (!dir.exists(file.path(mdl_flpth, 'inst'))) {
   cat(crayon::bgRed(crayon::white('Did NOT find `inst/`!')), '\n')
 }
-dockerfile <- file.path(mdl_flpth, 'dockerfiles', 'latest')
+dockerfile <- file.path(mdl_flpth, 'inst', 'dockerfiles', 'latest')
 if (is_installed(pkgnm = pkgnm)) {
   uninstall(pkgnm = pkgnm)
 }
