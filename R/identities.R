@@ -24,7 +24,12 @@ installed_pkgs <- function(...) {
 #' @family ids
 #' @export
 meta_get <- function(pkgnm) {
-  res <- yaml::read_yaml(file = system.file('om.yml', package = pkgnm))
+  yml_flpth <- system.file('om.yml', package = pkgnm)
+  if (!file.exists(yml_flpth)) {
+    msg <- paste0('No ', char('om.yml'), ' for ', char(pkgnm))
+    stop(msg, call. = FALSE)
+  }
+  res <- yaml::read_yaml(file = yml_flpth)
   # . are not allowed in image names
   res[['image']] <- gsub(pattern = '\\.+', replacement = '_', x = pkgnm)
   res[['package']] <- pkgnm
@@ -39,10 +44,10 @@ meta_get <- function(pkgnm) {
 #' @family ids
 img_get <- function(pkgnm) {
   meta <- meta_get(pkgnm = pkgnm)
-  if (is.null(meta[['docker']])) {
-    res <- meta[['image']]
-  } else {
+  if ('docker' %in% names(meta)) {
     res <- paste0(meta[['docker']], '/', meta[['image']])
+  } else {
+    res <- meta[['image']]
   }
   res
 }

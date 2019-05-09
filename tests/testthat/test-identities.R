@@ -4,11 +4,8 @@ test_that('modules_list() works', {
   expect_type(res, 'character')
 })
 test_that('meta_get() works', {
-  res <- with_mock(
-    `yaml::read_yaml` = function(...) list(),
-    outsider.base:::meta_get('')
-  )
-  expect_true(all(c('image', 'package') %in% names(res)))
+  # TOOD: add mock for system.file
+  expect_error(outsider.base:::meta_get('outsider.base'))
 })
 test_that('img_get() works', {
   foo <- function(meta) {
