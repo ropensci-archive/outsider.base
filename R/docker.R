@@ -4,10 +4,10 @@
 #' @name is_docker_available
 #' @title Check if Docker is installed and running
 #' @description Raises an error if docker is not available.
+#' @param call_error Call an error if no Docker detected? Default TRUE.
 #' @return NULL
-#' @family private-check
 #' @export
-is_docker_available <- function() {
+is_docker_available <- function(call_error = TRUE) {
   installed <- is_docker_installed()
   if (!installed) {
     message(paste0('Docker is not installed. ',
@@ -23,10 +23,10 @@ is_docker_available <- function() {
     }
   }
   avlbl <- installed & running
-  if (!avlbl) {
+  if (!avlbl & call_error) {
     stop("Docker is not available.", call. = FALSE)
   }
-  invisible(NULL)
+  invisible(avlbl)
 }
 
 #' @name is_docker_installed

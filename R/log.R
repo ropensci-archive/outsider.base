@@ -29,6 +29,19 @@ log_set <- function(log, val) {
   }
 }
 
+#' @name default_log_set
+#' @title Set default log streams
+#' @description By default all streams are printed to console with the exception
+#' of \code{docker_out}.
+#' @return NULL
+default_log_set <- function() {
+  options(program_out = TRUE)
+  options(program_err = TRUE)
+  options(docker_out = FALSE)
+  options(docker_err = TRUE)
+  invisible(TRUE)
+}
+
 #' @name log_get
 #' @title Return log stream option
 #' @description Return the log stream setting for a given stream. If the stream
@@ -43,18 +56,4 @@ log_get <- function(log = c('program_out', 'program_err', 'docker_out',
     res <- TRUE
   }
   res
-}
-
-#' @name default_log_set
-#' @title Set default log streams
-#' @description By default all streams are printed to console with the exception
-#' of \code{docker_out}.
-#' @return NULL
-#' @family private
-default_log_set <- function() {
-  options(program_out = TRUE)
-  options(program_err = TRUE)
-  options(docker_out = FALSE)
-  options(docker_err = TRUE)
-  invisible(TRUE)
 }

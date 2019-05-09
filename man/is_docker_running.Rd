@@ -14,7 +14,6 @@ Docker is required to run \code{outsider}. This function tests
 whether Docker is running.
 }
 \seealso{
-Other private-check: \code{\link{is_docker_available}},
-  \code{\link{is_docker_installed}}
+Other private-check: \code{\link{is_docker_installed}}
 }
 \concept{private-check}

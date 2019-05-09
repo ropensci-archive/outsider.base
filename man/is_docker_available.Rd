@@ -4,13 +4,11 @@
 \alias{is_docker_available}
 \title{Check if Docker is installed and running}
 \usage{
-is_docker_available()
+is_docker_available(call_error = TRUE)
+}
+\arguments{
+\item{call_error}{Call an error if no Docker detected? Default TRUE.}
 }
 \description{
 Raises an error if docker is not available.
 }
-\seealso{
-Other private-check: \code{\link{is_docker_installed}},
-  \code{\link{is_docker_running}}
-}
-\concept{private-check}

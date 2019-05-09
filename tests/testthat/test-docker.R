@@ -13,7 +13,7 @@ test_that('is_docker_available() works', {
   with_mock(
     `outsider.base:::is_docker_installed` = function(...) TRUE,
     `outsider.base:::is_docker_running` = function(...) TRUE,
-    expect_null(outsider.base:::is_docker_available())
+    expect_true(outsider.base:::is_docker_available())
   )
 })
 test_that('is_docker_installed() works', {

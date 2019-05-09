@@ -17,7 +17,7 @@ Return return a vector where all valid filepaths are converted
 to file basenames. E.g. "dir1/dir2/text.file" is converted to "text.file"
 }
 \seealso{
-Other private: \code{\link{default_log_set}},
-  \code{\link{is_filepath}}, \code{\link{log_get}}
+Other private: \code{\link{is_filepath}},
+  \code{\link{log_get}}
 }
 \concept{private}

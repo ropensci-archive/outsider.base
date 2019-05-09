@@ -15,7 +15,7 @@ Return the log stream setting for a given stream. If the stream
 is not set, the function will return TRUE (i.e. prints to console).
 }
 \seealso{
-Other private: \code{\link{default_log_set}},
-  \code{\link{is_filepath}}, \code{\link{to_basename}}
+Other private: \code{\link{is_filepath}},
+  \code{\link{to_basename}}
 }
 \concept{private}
