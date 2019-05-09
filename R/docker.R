@@ -90,7 +90,7 @@ docker_cmd <- function(args, std_out = TRUE, std_err = TRUE) {
 #' @return Logical
 #' @family private-docker
 docker_img_rm <- function(img) {
-  args <- c('image', 'rm', img)
+  args <- c('image', 'rm', '--force', img)
   docker_cmd(args, std_out = log_get('docker_out'),
              std_err = log_get('docker_err'))
 }
