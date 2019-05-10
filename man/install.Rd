@@ -22,5 +22,5 @@ Integer
 Install outsider module: install R package, build/pull Docker
 image. (Will only pull if image is available via DockerHub)
 Returns 0 if all successful, 1 if only R package installs, 2 if R package
-and Docker image fail.
+and Docker image both fail.
 }

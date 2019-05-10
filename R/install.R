@@ -15,7 +15,7 @@ is_installed <- function(pkgnm) {
 #' @description Install outsider module: install R package, build/pull Docker
 #' image. (Will only pull if image is available via DockerHub)
 #' Returns 0 if all successful, 1 if only R package installs, 2 if R package
-#' and Docker image fail.
+#' and Docker image both fail.
 #' @param flpth File path to module directory.
 #' @param tag Docker tag, default 'latest'
 #' @param pull Pull from Docker Hub or build locally? Default, FALSE.
@@ -23,7 +23,8 @@ is_installed <- function(pkgnm) {
 #' @return Integer
 #' @export
 # TODO: uninstall if already exists?
-install <- function(flpth, tag = 'latest', pull = FALSE, verbose = TRUE) {
+install <- function(flpth, tag = 'latest', pull = FALSE,
+                            verbose = TRUE) {
   success <- FALSE
   on.exit(expr = {
     if (!success) {
@@ -34,30 +35,45 @@ install <- function(flpth, tag = 'latest', pull = FALSE, verbose = TRUE) {
   pkgnm <- pkg[['package']]
   r_success <- devtools::install(pkg = pkg, force = TRUE, quiet = !verbose,
                                  reload = TRUE, build = FALSE)
-  d_success <- FALSE
-  if (is_installed(pkgnm = pkgnm)) {
-    if (pull) {
-      img <- img_get(pkgnm = pkgnm)
-      d_success <- docker_pull(img = img, tag = tag)
-      if (!d_success) {
-        msg <- paste0('Failed to pull ', char(paste0(img, ':', tag)),
-                      'Try a different tag, checking Docker Hub or',
-                      ' building manually.')
-        message(msg)
-      }
-    } else {
-      dockerfile <- system.file('dockerfiles', tag, package = pkgnm)
-      if (!dir.exists(dockerfile)) {
-        msg <- paste0('No tag ', char(tag), ' for ', char(pkgnm))
-        message(msg)
-      }
-      d_success <- docker_build(img = img_get(pkgnm = pkgnm),
-                                url_or_path = dockerfile, tag = tag)
-    }
-  }
+  d_success <- image_install(pkgnm = pkgnm, tag = tag, pull = pull)
   success <- r_success & d_success
   res <- 2L - as.integer(r_success + d_success)
   invisible(res)
+}
+
+#' @name image_install
+#' @title Install module's image
+#' @description Install the Docker image for an outsider module after the module
+#' package has been installed.
+#' @param pkgnm Name of module's R package
+#' @param tag Docker tag, default 'latest'
+#' @param pull Pull from Docker Hub or build locally? Default, FALSE.
+#' @return Integer
+#' @export
+image_install <- function(pkgnm, tag = 'latest', pull = TRUE) {
+  success <- FALSE
+  if (!is_installed(pkgnm = pkgnm)) {
+    return(invisible(success))
+  }
+  img <- img_get(pkgnm = pkgnm)
+  if (pull) {
+    success <- docker_pull(img = img, tag = tag)
+    if (!success) {
+      msg <- paste0('Failed to pull ', char(paste0(img, ':', tag)),
+                    'from Docker Hub. Will attempt to build locally instead.')
+      warning(msg)
+    }
+  }
+  if (!success) {
+    dockerfile <- system.file('dockerfiles', tag, package = pkgnm)
+    if (!dir.exists(dockerfile)) {
+      msg <- paste0('No tag ', char(tag), ' for ', char(pkgnm))
+      warning(msg)
+    }
+    success <- docker_build(img = img_get(pkgnm = pkgnm), tag = tag,
+                            url_or_path = dockerfile)
+  }
+  success
 }
 
 #' @name uninstall

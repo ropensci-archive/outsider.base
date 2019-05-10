@@ -63,15 +63,16 @@ docker_ids_get <- function(pkgnm) {
   nps <- docker_ps_count()
   imgs <- docker_img_ls()
   img <- img_get(pkgnm)
-  #print(imgs)
+  #TODO: install image is missing is image available?
+  pull <- imgs[['repository']] == img
+  if (any(pull)) {
+    tag <- imgs[pull, 'tag'][[1]]
+    tag <- tag[[1]]
+  } else {
+    stop(char(pkgnm), ' is missing its Docker image, try reinstalling.')
+  }
   if ('tag' %in% colnames(imgs)) {
-    pull <- imgs[['repository']] == img
-    if (any(pull)) {
-      tag <- imgs[pull, 'tag'][[1]]
-      tag <- tag[[1]]
-    } else {
-      stop(char(pkgnm), ' is missing its Docker image, try reinstalling.')
-    }
+    
   } else {
     # Sometimes there is no tag column (?)
     tag <- 'latest'
