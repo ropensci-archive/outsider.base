@@ -54,7 +54,8 @@ img_get <- function(pkgnm) {
 
 #' @name docker_ids_get
 #' @title Get docker names for a module
-#' @description Return the image and container names for a module
+#' @description Return the image and container names for a module. Will attempt
+#' to build/pull image if missing.
 #' @param pkgnm Package name of module
 #' @return Logical
 #' @family ids
@@ -63,19 +64,29 @@ docker_ids_get <- function(pkgnm) {
   nps <- docker_ps_count()
   imgs <- docker_img_ls()
   img <- img_get(pkgnm)
-  #TODO: install image is missing is image available?
   pull <- imgs[['repository']] == img
-  if (any(pull)) {
+  if (!any(pull)) {
+    # image is missing, false install
+    msg <- paste0('No Docker image found for ', char(pkgnm),
+                  ' -- attempting to pull/build image with tag ',
+                  char('latest'))
+    message(msg)
+    success <- image_install(pkgnm = pkgnm, tag = 'latest', pull = TRUE)
+    if (!success) {
+      stop('Failed to build/pull image.', call. = FALSE)
+    }
+    imgs <- docker_img_ls()
+    pull <- imgs[['repository']] == img
+  }
+  if ('tag' %in% colnames(imgs)) {
     tag <- imgs[pull, 'tag'][[1]]
     tag <- tag[[1]]
   } else {
-    stop(char(pkgnm), ' is missing its Docker image, try reinstalling.')
-  }
-  if ('tag' %in% colnames(imgs)) {
-    
-  } else {
     # Sometimes there is no tag column (?)
+    # Most of the time it should be 'latest'
     tag <- 'latest'
+    msg <- paste0('No tags detected, using ', char(tag))
+    warning(msg)
   }
   cntnr <- paste0(meta[['image']], '_', nps)
   c('img' = img, 'cntnr' = cntnr, 'tag' = tag)

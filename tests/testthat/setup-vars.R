@@ -1,7 +1,7 @@
 # shared vars
 pkgnm <- 'om..hello.world'
-img <- 'dombennett/om__hello_world'
-meta_img <- 'om__hello_world' # as it appears in om.yml
+img <- 'dombennett/om_hello_world'
+meta_img <- 'om_hello_world' # as it appears in om.yml
 cntnr <- 'om__hello_world_1'
 tag <- 'latest'
 # mdl_flpth
