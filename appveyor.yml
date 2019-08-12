@@ -8,7 +8,8 @@ init:
         Import-Module '..\appveyor-tool.ps1'
 
 install:
-  ps: Bootstrap
+  - ps: Bootstrap
+  - cmd: git submodule update --init --recursive
 
 cache:
   - C:\RLibrary
@@ -25,6 +26,7 @@ environment:
 build_script:
   - travis-tool.sh install_deps
 
+# install docker
 before_test:
   - cinst docker-cli
   - ps: $env:Path += ";C:\Program Files (x86)\Docker\"
