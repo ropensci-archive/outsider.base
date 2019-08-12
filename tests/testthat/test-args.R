@@ -53,7 +53,9 @@ test_that('dirpath_get() works', {
   tmp <- tempdir()
   expect_equal(dirpath_get(tmp), tmp)
   # drop filename
-  expect_equal(dirpath_get(file.path(tmp, 'afile.txt')), file.path(tmp, ''))
+  res <- dirpath_get(file.path(tmp, 'afile.txt'))
+  expect_false(grepl(res, 'afile.txt'))
+  expect_true(grepl(tmp, res))
 })
 test_that('arglist_parse() works', {
   # nothin in, nothin out
