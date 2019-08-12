@@ -31,7 +31,7 @@ before_test:
   - cinst docker-cli
   - ps: $env:Path += ";C:\Program Files (x86)\Docker\"
   - docker --version
-  - docker start
+  # - docker start
   # - net start docker
   - docker run hello-world
 
