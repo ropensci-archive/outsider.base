@@ -8,8 +8,7 @@ init:
         Import-Module '..\appveyor-tool.ps1'
 
 install:
-  - ps: Bootstrap
-  - docker version
+  ps: Bootstrap
 
 cache:
   - C:\RLibrary
@@ -25,6 +24,9 @@ environment:
 
 build_script:
   - travis-tool.sh install_deps
+
+before_test:
+  - docker --version
 
 test_script:
   - travis-tool.sh run_tests
