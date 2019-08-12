@@ -33,7 +33,7 @@ before_test:
   - docker --version
   # - docker start
   # - net start docker
-  - docker run hello-world
+  - ps: docker run hello-world
 
 test_script:
   - travis-tool.sh run_tests
