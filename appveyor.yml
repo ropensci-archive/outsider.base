@@ -28,11 +28,16 @@ build_script:
 
 # install docker
 before_test:
+  # docker client
   - cinst docker-cli
   - ps: $env:Path += ";C:\Program Files (x86)\Docker\"
   - docker --version
-  # - docker start
-  - net start docker
+  # docker engine + hypervisor
+  - cinst docker-engine
+  - cinst virtualbox
+  - docker-machine ls
+  - docker-machine env --shell powershell dev | iex
+  # test
   - docker run hello-world
 
 test_script:
