@@ -15,3 +15,4 @@
 ^inst/extdata/om..hello.world/.Rhistory$
 ^inst/extdata/om..hello.world/.travis.yml$
 ^inst/extdata/om..hello.world/.Rproj.user$
+^appveyor\.yml$
