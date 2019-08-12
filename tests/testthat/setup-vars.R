@@ -19,3 +19,4 @@ dockerfile <- file.path(mdl_flpth, 'inst', 'dockerfiles', 'latest')
 if (is_installed(pkgnm = pkgnm)) {
   uninstall(pkgnm = pkgnm)
 }
+docker_available <- outsider.base:::is_docker_available(call_error = FALSE)

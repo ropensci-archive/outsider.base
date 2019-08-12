@@ -1,9 +1,9 @@
-# TODO: add skips if no docker
 context('Testing \'install\'')
 test_that("is_installed() works", {
   expect_false(outsider.base:::is_installed(pkgnm = 'notapkg'))
 })
 test_that('install and uninstall works', {
+  skip_if(!docker_available, message = "Docker not available")
   expect_true(dir.exists(file.path(mdl_flpth, 'inst')))
   expect_true(file.exists(file.path(mdl_flpth, 'inst', 'om.yml')))
   expect_true(pkg_install(flpth = mdl_flpth))
