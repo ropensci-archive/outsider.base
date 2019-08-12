@@ -29,8 +29,9 @@ build_script:
 
 before_test:
   - docker version
-  - docker run hello-world:nanoserver-1709
-
+  - docker pull base
+  - docker run base /bin/echo hello world
+  
 test_script:
   - travis-tool.sh run_tests
 
