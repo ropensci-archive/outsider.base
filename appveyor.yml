@@ -28,7 +28,9 @@ build_script:
   - travis-tool.sh install_deps
 
 before_test:
+  - docker pull --platform linux ubuntu
   - docker version
+  - docker run 
   - docker build -t dombennett/om_hello_world inst/extdata/om..hello.world/inst/dockerfiles/latest/
   - docker run dombennett/om_hello_world /bin/echo testing
   
