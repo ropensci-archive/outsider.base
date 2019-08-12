@@ -24,7 +24,7 @@ environment:
 
 # enable service required for build/tests
 services:
-  - docker
+  - Docker
 
 build_script:
   - travis-tool.sh install_deps
