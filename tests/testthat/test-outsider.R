@@ -1,5 +1,6 @@
 context('Testing \'outsider\'')
 test_that("outsider class and methods works", {
+  skip_if(!docker_available)
   container <- structure(list(), class = 'container')
   # test init
   otsdr <- with_mock(

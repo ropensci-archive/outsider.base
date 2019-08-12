@@ -40,6 +40,7 @@ test_that('print.container() works', {
   )
 })
 test_that('container methods work', {
+  skip_if(!docker_available)
   # set-up
   outsider.base:::docker_build(img = img, url_or_path = dockerfile)
   container <- with_mock(
