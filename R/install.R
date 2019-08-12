@@ -10,34 +10,17 @@ is_installed <- function(pkgnm) {
   pkgnm %in% installed
 }
 
-#' @name install
-#' @title Install module
-#' @description Install outsider module: install R package, build/pull Docker
-#' image. (Will only pull if image is available via DockerHub)
-#' Returns 0 if all successful, 1 if only R package installs, 2 if R package
-#' and Docker image both fail.
+#' @name pkg_install
+#' @title Install outsider module package
+#' @description Install outsider module's package.
 #' @param flpth File path to module directory.
-#' @param tag Docker tag, default 'latest'
-#' @param pull Pull from Docker Hub or build locally? Default, FALSE.
 #' @param verbose Be verbose? Default TRUE.
-#' @return Integer
+#' @return Logical(1)
 #' @export
-# TODO: uninstall if already exists?
-install <- function(flpth, tag = 'latest', pull = FALSE,
-                            verbose = TRUE) {
-  success <- FALSE
-  on.exit(expr = {
-    if (!success) {
-      uninstall(pkgnm = pkgnm)
-    }
-  })
+pkg_install <- function(flpth, verbose = TRUE) {
   pkg <- devtools::as.package(x = flpth)
-  pkgnm <- pkg[['package']]
-  r_success <- devtools::install(pkg = pkg, force = TRUE, quiet = !verbose,
-                                 reload = TRUE, build = FALSE)
-  d_success <- image_install(pkgnm = pkgnm, tag = tag, pull = pull)
-  success <- r_success & d_success
-  res <- 2L - as.integer(r_success + d_success)
+  res <- devtools::install(pkg = pkg, force = TRUE, quiet = !verbose,
+                           reload = TRUE, build = FALSE)
   invisible(res)
 }
 
@@ -56,7 +39,7 @@ image_install <- function(pkgnm, tag = 'latest', pull = TRUE) {
     return(invisible(success))
   }
   img <- img_get(pkgnm = pkgnm)
-  if (pull) {
+  if (pull & grepl(pattern = '/', x = img)) {
     success <- docker_pull(img = img, tag = tag)
     if (!success) {
       msg <- paste0('Failed to pull ', char(paste0(img, ':', tag)),
