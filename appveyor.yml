@@ -31,6 +31,7 @@ before_test:
   - cinst docker-cli
   - ps: $env:Path += ";C:\Program Files (x86)\Docker\"
   - docker --version
+  - docker run hello-world
 
 test_script:
   - travis-tool.sh run_tests
