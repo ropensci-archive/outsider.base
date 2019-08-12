@@ -26,7 +26,7 @@ build_script:
   - travis-tool.sh install_deps
 
 before_test:
-  - cinst docker-desktop
+  - cinst docker-cli
   - ps: $env:Path += ";C:\Program Files (x86)\Docker\"
   - docker --version
 
