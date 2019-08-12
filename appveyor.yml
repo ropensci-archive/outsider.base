@@ -29,8 +29,8 @@ build_script:
 
 before_test:
   - docker version
-  - docker pull base
-  - docker run base /bin/echo hello world
+  - docker build -t dombennett/om_hello_world inst/extdata/om..hello.world/inst/dockerfiles/latest/
+  - docker run dombennett/om_hello_world /bin/echo testing
   
 test_script:
   - travis-tool.sh run_tests
