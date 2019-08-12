@@ -32,7 +32,7 @@ before_test:
   - ps: $env:Path += ";C:\Program Files (x86)\Docker\"
   - docker --version
   # - docker start
-  - ps: net start com.docker.service
+  - net start docker
   - docker run hello-world
 
 test_script:
