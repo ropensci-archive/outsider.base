@@ -1,4 +1,5 @@
 # DO NOT CHANGE the "init" and "install" sections below
+image: Visual Studio 2018
 
 # Download script file from GitHub
 init:
@@ -29,14 +30,14 @@ build_script:
 # install docker
 before_test:
   # docker client
-  - cinst docker-cli
-  - ps: $env:Path += ";C:\Program Files (x86)\Docker\"
-  - docker --version
+  #- cinst docker-cli
+  #- ps: $env:Path += ";C:\Program Files (x86)\Docker\"
+  #- docker --version
   # docker engine + hypervisor
-  - cinst docker-machine
-  - cinst virtualbox
-  - docker-machine ls
-  - docker-machine env --shell powershell dev | iex
+  #- cinst docker-machine
+  #- cinst virtualbox
+  #- docker-machine ls
+  #- docker-machine env --shell powershell dev | iex
   # test
   - docker run hello-world
 
