@@ -25,7 +25,10 @@ environment:
 # Adapt as necessary starting from here
 
 build_script:
-  - ps: Rscript -e "install.packages(`"remotes`")"
+  - docker version
+  - docker pull --platform=linux hello-world
+  - docker run hello-world
+  - ps: Rscript -e 'install.packages("'"remotes"'")'
   - travis-tool.sh install_deps
 
 before_test:
