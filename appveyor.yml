@@ -1,5 +1,5 @@
 # DO NOT CHANGE the "init" and "install" sections below
-image: Windows Server 2019
+#image: Windows Server 2019
 
 # Download script file from GitHub
 init:
@@ -25,10 +25,10 @@ environment:
 # Adapt as necessary starting from here
 
 build_script:
-  - docker version
-  - docker pull --platform=linux hello-world
-  - docker run hello-world
-  - ps: Rscript -e 'install.packages("'"remotes"'")'
+  #- docker version
+  #- docker pull --platform=linux hello-world
+  #- docker run hello-world
+  #- ps: Rscript -e 'install.packages("'"remotes"'")'
   - travis-tool.sh install_deps
 
 before_test:
