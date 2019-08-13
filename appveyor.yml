@@ -25,7 +25,7 @@ environment:
 # Adapt as necessary starting from here
 
 build_script:
-  - ps: Rscript -e 'install.packages("remotes")'
+  - ps: Rscript -e install.packages("remotes")
   - travis-tool.sh install_deps
 
 before_test:
