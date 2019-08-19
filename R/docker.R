@@ -159,7 +159,8 @@ docker_ps_count <- function() {
 #' @title List the number of installed images
 #' @description Return a table of all the available Docker images.
 #' @return tibble
-#' @family private-docker
+#' @family docker
+#' @export
 docker_img_ls <- function() {
   res <- list()
   sys_out <- sys::exec_internal(cmd = 'docker', args = c('image', 'ls'))

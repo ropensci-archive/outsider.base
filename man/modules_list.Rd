@@ -10,7 +10,7 @@ modules_list()
 Logical
 }
 \description{
-Return the image and container names for a module
+Return the R package names of all installed outsider modules
 }
 \seealso{
 Other ids: \code{\link{docker_ids_get}},

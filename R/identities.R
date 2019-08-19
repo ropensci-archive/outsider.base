@@ -1,7 +1,7 @@
 
 #' @name modules_list
 #' @title List all installed outsider modules
-#' @description Return the image and container names for a module
+#' @description Return the R package names of all installed outsider modules
 #' @return Logical
 #' @family ids
 #' @export
@@ -30,9 +30,21 @@ meta_get <- function(pkgnm) {
     stop(msg, call. = FALSE)
   }
   res <- yaml::read_yaml(file = yml_flpth)
+  names(res) <- tolower(names(res))
   # . are not allowed in image names
   res[['image']] <- gsub(pattern = '\\.+', replacement = '_', x = pkgnm)
+  if (!is.null(res[['docker']]) && nchar(res[['docker']]) > 1) {
+    res[['image']] <- paste0(res[['docker']], '/', res[['image']])
+  }
   res[['package']] <- pkgnm
+  if (!'url' %in% names(res)) {
+    services <- c('github', 'gitlab', 'bitbucket')
+    service <- services[services %in% names(res)][[1]]
+    url <- switch(service, github = 'https://github.com/',
+                  gitlab = 'https://gitlab.com/',
+                  bitbucket = 'https://bitbucket.org/')
+    res[['url']] <- paste0(url, res[["package"]])
+  }
   res
 }
 
