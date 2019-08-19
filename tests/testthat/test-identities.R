@@ -7,19 +7,6 @@ test_that('meta_get() works', {
   # TOOD: add mock for system.file
   expect_error(outsider.base:::meta_get('outsider.base'))
 })
-test_that('img_get() works', {
-  foo <- function(meta) {
-    with_mock(
-      `outsider.base:::meta_get` = function(...) meta,
-      outsider.base:::img_get('pkg')
-    )
-  }
-  # works with and without docker username
-  res <- foo(meta = list('docker' = 'an', 'image' = 'img'))
-  expect_true(res == 'an/img')
-  res <- foo(meta = list('image' = 'img'))
-  expect_true(res == 'img')
-})
 test_that('docker_ids_get() works', {
   meta <- list('image' = meta_img, 'docker' = 'dombennett')
   # wo/ tag info

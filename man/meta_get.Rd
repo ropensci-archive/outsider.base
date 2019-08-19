@@ -17,6 +17,6 @@ Return a named list of all metadata associated with a module
 }
 \seealso{
 Other ids: \code{\link{docker_ids_get}},
-  \code{\link{img_get}}, \code{\link{modules_list}}
+  \code{\link{modules_list}}
 }
 \concept{ids}

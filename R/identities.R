@@ -48,22 +48,6 @@ meta_get <- function(pkgnm) {
   res
 }
 
-#' @name img_get
-#' @title Construct Docker image name from meta
-#' @description Return Docker image name using DockerHub username, if available.
-#' @param pkgnm Package name of module
-#' @return character(1)
-#' @family ids
-img_get <- function(pkgnm) {
-  meta <- meta_get(pkgnm = pkgnm)
-  if ('docker' %in% names(meta)) {
-    res <- paste0(meta[['docker']], '/', meta[['image']])
-  } else {
-    res <- meta[['image']]
-  }
-  res
-}
-
 #' @name docker_ids_get
 #' @title Get docker names for a module
 #' @description Return the image and container names for a module. Will attempt
@@ -75,7 +59,7 @@ docker_ids_get <- function(pkgnm) {
   meta <- meta_get(pkgnm = pkgnm)
   nps <- docker_ps_count()
   imgs <- docker_img_ls()
-  img <- img_get(pkgnm)
+  img <- meta[['image']]
   pull <- imgs[['repository']] == img
   if (!any(pull)) {
     # image is missing, false install

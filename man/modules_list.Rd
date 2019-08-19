@@ -14,6 +14,6 @@ Return the R package names of all installed outsider modules
 }
 \seealso{
 Other ids: \code{\link{docker_ids_get}},
-  \code{\link{img_get}}, \code{\link{meta_get}}
+  \code{\link{meta_get}}
 }
 \concept{ids}

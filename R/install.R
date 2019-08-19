@@ -38,7 +38,7 @@ image_install <- function(pkgnm, tag = 'latest', pull = TRUE) {
   if (!is_installed(pkgnm = pkgnm)) {
     return(invisible(success))
   }
-  img <- img_get(pkgnm = pkgnm)
+  img <- meta_get(pkgnm = pkgnm)[['image']]
   if (pull & grepl(pattern = '/', x = img)) {
     success <- docker_pull(img = img, tag = tag)
     if (!success) {
@@ -53,7 +53,7 @@ image_install <- function(pkgnm, tag = 'latest', pull = TRUE) {
       msg <- paste0('No tag ', char(tag), ' for ', char(pkgnm))
       warning(msg)
     }
-    success <- docker_build(img = img_get(pkgnm = pkgnm), tag = tag,
+    success <- docker_build(img = img, tag = tag,
                             url_or_path = dockerfile)
   }
   success
@@ -70,7 +70,7 @@ image_install <- function(pkgnm, tag = 'latest', pull = TRUE) {
 uninstall <- function(pkgnm) {
   if (is_installed(pkgnm = pkgnm)) {
     # TODO: are we sure this would remove all tagged version of an image?
-    img <- img_get(pkgnm = pkgnm)
+    img <- meta_get(pkgnm = pkgnm)[['image']]
     try(docker_img_rm(img = img), silent = TRUE)
     devtools::uninstall(pkg = devtools::inst(pkgnm), quiet = TRUE,
                         unload = TRUE)

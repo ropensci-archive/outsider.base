@@ -17,7 +17,7 @@ Return the image and container names for a module. Will attempt
 to build/pull image if missing.
 }
 \seealso{
-Other ids: \code{\link{img_get}}, \code{\link{meta_get}},
+Other ids: \code{\link{meta_get}},
   \code{\link{modules_list}}
 }
 \concept{ids}
