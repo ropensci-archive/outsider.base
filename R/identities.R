@@ -37,8 +37,8 @@ meta_get <- function(pkgnm) {
     res[['image']] <- paste0(res[['docker']], '/', res[['image']])
   }
   res[['package']] <- pkgnm
-  if (!'url' %in% names(res)) {
-    services <- c('github', 'gitlab', 'bitbucket')
+  services <- c('github', 'gitlab', 'bitbucket')
+  if (!'url' %in% names(res) & any(services %in% names(res))) {
     service <- services[services %in% names(res)][[1]]
     url <- switch(service, github = 'https://github.com/',
                   gitlab = 'https://gitlab.com/',
