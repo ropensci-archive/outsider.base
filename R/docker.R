@@ -73,6 +73,9 @@ is_docker_running <- function() {
 #' @return Logical
 #' @family private-docker
 docker_cmd <- function(args, std_out = TRUE, std_err = TRUE) {
+  # cmd_args <- crayon::silver(paste0('docker ', paste(args, collapse = ' ')))
+  # cat_line(crayon::bold('Command:\n'), cmd_args)
+  # cat_line(crayon::silver(cli::rule(line = '.')))
   is_docker_available()
   callr_args <- list(args, std_out, std_err)
   res <- callr::r(func = function(args, std_out, std_err) {

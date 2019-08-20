@@ -8,13 +8,13 @@ test_that('meta_get() works', {
   expect_error(outsider.base:::meta_get('outsider.base'))
 })
 test_that('docker_ids_get() works', {
-  meta <- list('image' = meta_img, 'docker' = 'dombennett')
+  meta <- list('image' = img, 'docker' = 'dombennett')
   # wo/ tag info
   imgs <- tibble::as_tibble(list('repository' = img))
   res <- with_mock(
-    `outsider.base:::meta_get` = function(...) meta,
+    `outsider.base::meta_get` = function(...) meta,
     `outsider.base:::docker_ps_count` = function(...) 0,
-    `outsider.base:::docker_img_ls` = function(...) imgs,
+    `outsider.base::docker_img_ls` = function(...) imgs,
     expect_warning(outsider.base:::docker_ids_get(pkgnm = pkgnm))
   )
   expect_true(all(names(res) %in% c('img', 'cntnr', 'tag')))

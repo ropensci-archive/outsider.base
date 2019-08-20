@@ -33,6 +33,8 @@ meta_get <- function(pkgnm) {
   names(res) <- tolower(names(res))
   # . are not allowed in image names
   res[['image']] <- gsub(pattern = '\\.+', replacement = '_', x = pkgnm)
+  # container_base is based off image
+  res[['container']] <- res[['image']]
   if (!is.null(res[['docker']]) && nchar(res[['docker']]) > 1) {
     res[['image']] <- paste0(res[['docker']], '/', res[['image']])
   }
@@ -84,6 +86,6 @@ docker_ids_get <- function(pkgnm) {
     msg <- paste0('No tags detected, using ', char(tag))
     warning(msg)
   }
-  cntnr <- paste0(meta[['image']], '_', nps)
+  cntnr <- paste0(meta[['container']], '_', nps)
   c('img' = img, 'cntnr' = cntnr, 'tag' = tag)
 }
