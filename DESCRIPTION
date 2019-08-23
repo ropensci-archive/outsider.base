@@ -1,7 +1,7 @@
 Package: outsider.base
 Type: Package
 Title: Base Package for "outsider"
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: person("Dom", "Bennett", role = c("aut", "cre"),
     email = "dominic.john.bennett@gmail.com",
     comment = c(ORCID = "0000-0003-2722-1359"))
@@ -30,4 +30,5 @@ Imports:
     cli,
     praise
 Suggests:
+    ssh,
     testthat (>= 2.0)
