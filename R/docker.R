@@ -37,7 +37,7 @@ is_docker_available <- function(call_error = TRUE) {
 #' @family private-check
 is_docker_installed <- function() {
   success <- tryCatch(expr = {
-    res <- sys::exec_internal(cmd = 'docker', args = '--help')
+    res <- exec_internal(cmd = 'docker', args = '--help')
     res[['status']] == 0
   }, error = function(e) {
     FALSE
@@ -53,7 +53,7 @@ is_docker_installed <- function() {
 #' @family private-check
 is_docker_running <- function() {
   success <- tryCatch(expr = {
-    res <- sys::exec_internal(cmd = 'docker', args = 'ps')
+    res <- exec_internal(cmd = 'docker', args = 'ps')
     res[['status']] == 0
   }, error = function(e) {
     FALSE
@@ -77,10 +77,9 @@ docker_cmd <- function(args, std_out = TRUE, std_err = TRUE) {
   # cat_line(crayon::bold('Command:\n'), cmd_args)
   # cat_line(crayon::silver(cli::rule(line = '.')))
   is_docker_available()
-  callr_args <- list(args, std_out, std_err)
-  res <- callr::r(func = function(args, std_out, std_err) {
-    sys::exec_wait(cmd = 'docker', args = args,
-                   std_out = std_out, std_err = std_err) 
+  callr_args <- list(exec_wait, args, std_out, std_err)
+  res <- callr::r(func = function(exec_wait, args, std_out, std_err) {
+    exec_wait(cmd = 'docker', args = args, std_out = std_out, std_err = std_err) 
   }, args = callr_args, show = TRUE)
   res == 0
 }
@@ -131,14 +130,42 @@ docker_build <- function(img, url_or_path, tag = 'latest') {
 #' @description Copy files to and from running Docker container
 #' @details Container folders are indicated with
 #' \code{[container_id]:[filepath]}.
+#' Files are uploaded/downloaded to/from the server based on the presence of
+#' ":" in origin/dest file paths.
 #' @param origin Origin filepath
 #' @param dest Destination filepath
 #' @return Logical
 #' @family private-docker
 docker_cp <- function(origin, dest) {
-  args <- c('cp', origin, dest)
-  docker_cmd(args = args, std_out = log_get('docker_out'),
-             std_err = log_get('docker_err'))
+  cp <- function(origin, dest) {
+    args <- c('cp', origin, dest)
+    docker_cmd(args = args, std_out = log_get('docker_out'),
+               std_err = log_get('docker_err'))
+  }
+  server_fl_make <- function(fl) {
+    server_fl <- sub(pattern = "^.*:", replacement = "", fl)
+    server_fl <- paste0(ssh_wd, '/', server_fl)
+  }
+  if (is_server_connected()) {
+    if (!grepl(pattern = ':', x = origin)) {
+      server_fl <- server_fl_make(fl = dest)
+      # local machine -> server
+      res1 <- server_upload(fl = origin)
+      # server -> container
+      res2 <- cp(origin = server_fl, dest = dest)
+      res <- res1 & res2
+    } else {
+      server_fl <- server_fl_make(fl = origin)
+      # container -> server
+      res1 <- cp(origin = origin, dest = server_fl)
+      # server -> local machine
+      res2 <- server_download(origin = server_fl, dest = dest)
+      res <- res1 & res2
+    }
+  } else {
+    res <- cp(origin = origin, dest = dest)
+  }
+  res
 }
 
 # Special ----
@@ -150,7 +177,7 @@ docker_cp <- function(origin, dest) {
 #' @family private-docker
 docker_ps_count <- function() {
   is_docker_available()
-  res <- sys::exec_internal(cmd = 'docker', args = 'ps')
+  res <- exec_internal(cmd = 'docker', args = 'ps')
   if (res[['status']] == 0) {
     ps <- strsplit(x = rawToChar(res[['stdout']]), split = '\n')[[1]][-1]
     return(length(ps))
@@ -166,7 +193,7 @@ docker_ps_count <- function() {
 #' @export
 docker_img_ls <- function() {
   res <- list()
-  sys_out <- sys::exec_internal(cmd = 'docker', args = c('image', 'ls'))
+  sys_out <- exec_internal(cmd = 'docker', args = c('image', 'ls'))
   if (sys_out[['status']] == 0) {
     images <- strsplit(x = rawToChar(sys_out[['stdout']]), split = '\n')[[1]]
     if (length(images) > 1) {

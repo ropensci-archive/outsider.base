@@ -20,6 +20,8 @@ Copy files to and from running Docker container
 \details{
 Container folders are indicated with
 \code{[container_id]:[filepath]}.
+Files are uploaded/downloaded to/from the server based on the presence of
+":" in origin/dest file paths.
 }
 \seealso{
 Other private-docker: \code{\link{container-class}},
