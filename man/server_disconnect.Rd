@@ -12,10 +12,16 @@ logical
 \description{
 Disconnect from a server and remove from \code{outsider}
 }
-\seealso{
-Other private-server: \code{\link{is_server_connected}},
-  \code{\link{server_connect}},
-  \code{\link{server_download}},
-  \code{\link{server_fetch}}, \code{\link{server_upload}}
+\examples{
+library(outsider.base)
+
+# NOT RUN
+# session <- ssh::ssh_connect(host = '[INSERT HOST IP]')
+# server_connect(session = session)
+# # run outsider.base commands, when finished
+# server_disconnect()
 }
-\concept{private-server}
+\seealso{
+Other public-server: \code{\link{server_connect}}
+}
+\concept{public-server}

@@ -11,7 +11,9 @@ For more information visit, https://github.com/antonellilab/outsider"
 #' @description Connect to a server, make accessible to \code{outsider} and
 #' set-up for \code{outsider} interaction.
 #' @return logical
-#' @family private-server
+#' @param session ssh session, see \code{\link[ssh]{ssh_connect}}
+#' @family public-server
+#' @example examples/server.R
 #' @export
 server_connect <- function(session) {
   if (!requireNamespace("ssh", quietly = TRUE)) {
@@ -21,7 +23,7 @@ server_connect <- function(session) {
   }
   # set in options()
   options('outsider-ssh-session' = session)
-  # create working dir
+  # create working dir (assumes a UNIX system)
   command <- c(paste0("if [ ! -e ", ssh_wd, " ];\nthen mkdir ", ssh_wd, "\nfi"),
                paste0("echo \"", readme_text, '\" > ', ssh_wd, '/README'))
   res <- ssh::ssh_exec_wait(session = session, command = command)
@@ -32,7 +34,8 @@ server_connect <- function(session) {
 #' @title Disconnect from a server
 #' @description Disconnect from a server and remove from \code{outsider}
 #' @return logical
-#' @family private-server
+#' @family public-server
+#' @example examples/server.R
 #' @export
 server_disconnect <- function() {
   if (is_server_connected()) {
@@ -105,7 +108,19 @@ server_download <- function(origin, dest) {
   ssh::scp_download(session = session, files = origin, to = tmp_flpth,
                     verbose = TRUE)
   fl <- file.path(tmp_flpth, list.files(tmp_flpth))
-  file.copy(from = fl, to = dest, recursive = TRUE)
+  if (length(fl) > 1) {
+    stop('More files than expected.')
+  }
+  if (dir.exists(fl)) {
+    if (!dir.exists(dest)) {
+      dir.create(dest)
+    }
+    for (subfl in list.files(fl)) {
+      file.copy(from = file.path(fl, subfl), to = file.path(dest, subfl))
+    }
+  } else {
+    file.copy(from = fl, to = dest)
+  }
   invisible(file.exists(dest))
 }
 

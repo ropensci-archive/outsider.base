@@ -14,9 +14,7 @@ Return TRUE if an \code{ssh} session exists with which
 \code{outsider} can interact.
 }
 \seealso{
-Other private-server: \code{\link{server_connect}},
-  \code{\link{server_disconnect}},
-  \code{\link{server_download}},
+Other private-server: \code{\link{server_download}},
   \code{\link{server_fetch}}, \code{\link{server_upload}}
 }
 \concept{private-server}

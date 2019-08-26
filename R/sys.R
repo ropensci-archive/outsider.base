@@ -1,3 +1,16 @@
+#' @name exec_wait
+#' @title Execute system commands and wait for response
+#' @description Passes arguments to \code{\link[sys]{exec_wait}}, if a server
+#' is connected arguments are passed to \code{\link[ssh]{ssh_exec_wait}}
+#' instead.
+#' @param cmd Command
+#' @param args Arguments
+#' @param std_out Standard out
+#' @param std_err Standard error
+#' @param std_in Standard in
+#' @param timeout Timeout
+#' @return logical
+#' @family private-sys
 exec_wait <- function(cmd, args = NULL, std_out = stdout(), std_err = stderr(), 
                       std_in = NULL, timeout = 0) {
   if (is_server_connected()) {
@@ -12,6 +25,18 @@ exec_wait <- function(cmd, args = NULL, std_out = stdout(), std_err = stderr(),
   res
 }
 
+#' @name exec_internal
+#' @title Execute system commands and wait for response
+#' @description Passes arguments to \code{\link[sys]{exec_internal}}, if a
+#' server is connected arguments are passed to
+#' \code{\link[ssh]{ssh_exec_internal}} instead.
+#' @param cmd Command
+#' @param args Arguments
+#' @param std_in Standard in
+#' @param error Call an error? T/F
+#' @param timeout Timeout
+#' @return logical
+#' @family private-sys
 exec_internal <- function(cmd, args = NULL, std_in = NULL, error = TRUE,
                           timeout = 0) {
   if (is_server_connected()) {

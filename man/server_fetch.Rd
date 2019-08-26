@@ -20,8 +20,6 @@ See \code{\link[ssh]{ssh_connect}} for more details.
 }
 \seealso{
 Other private-server: \code{\link{is_server_connected}},
-  \code{\link{server_connect}},
-  \code{\link{server_disconnect}},
   \code{\link{server_download}},
   \code{\link{server_upload}}
 }

@@ -6,6 +6,9 @@
 \usage{
 server_connect(session)
 }
+\arguments{
+\item{session}{ssh session, see \code{\link[ssh]{ssh_connect}}}
+}
 \value{
 logical
 }
@@ -13,10 +16,16 @@ logical
 Connect to a server, make accessible to \code{outsider} and
 set-up for \code{outsider} interaction.
 }
-\seealso{
-Other private-server: \code{\link{is_server_connected}},
-  \code{\link{server_disconnect}},
-  \code{\link{server_download}},
-  \code{\link{server_fetch}}, \code{\link{server_upload}}
+\examples{
+library(outsider.base)
+
+# NOT RUN
+# session <- ssh::ssh_connect(host = '[INSERT HOST IP]')
+# server_connect(session = session)
+# # run outsider.base commands, when finished
+# server_disconnect()
 }
-\concept{private-server}
+\seealso{
+Other public-server: \code{\link{server_disconnect}}
+}
+\concept{public-server}
