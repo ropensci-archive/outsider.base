@@ -25,6 +25,7 @@ addons:
   apt:
     packages:
       - libapparmor-dev
+      - libssh-dev
 
 notifications:
   email:
