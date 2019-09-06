@@ -48,6 +48,7 @@ image_install <- function(pkgnm, tag = 'latest', pull = TRUE) {
     }
   }
   if (!success) {
+    # TODO: what if building remotely?
     dockerfile <- system.file('dockerfiles', tag, package = pkgnm)
     if (!dir.exists(dockerfile)) {
       msg <- paste0('No tag ', char(tag), ' for ', char(pkgnm))

@@ -14,7 +14,7 @@
 exec_wait <- function(cmd, args = NULL, std_out = stdout(), std_err = stderr(), 
                       std_in = NULL, timeout = 0) {
   if (is_server_connected()) {
-    session <- server_fetch(verbose = FALSE)
+    session <- server_fetch(verbose = 'exec' %in% args)
     command <- paste0(cmd, ' ', paste0(args, collapse = ' '))
     res <- ssh::ssh_exec_wait(session = session, command = command,
                               std_out = std_out, std_err = std_err)
@@ -40,7 +40,7 @@ exec_wait <- function(cmd, args = NULL, std_out = stdout(), std_err = stderr(),
 exec_internal <- function(cmd, args = NULL, std_in = NULL, error = TRUE,
                           timeout = 0) {
   if (is_server_connected()) {
-    session <- server_fetch(verbose = TRUE)
+    session <- server_fetch(verbose = FALSE)
     command <- paste0(cmd, ' ', paste0(args, collapse = ' '))
     res <- ssh::ssh_exec_internal(session = session, command = command,
                                   error = error)

@@ -76,11 +76,18 @@ docker_cmd <- function(args, std_out = TRUE, std_err = TRUE) {
   # cmd_args <- crayon::silver(paste0('docker ', paste(args, collapse = ' ')))
   # cat_line(crayon::bold('Command:\n'), cmd_args)
   # cat_line(crayon::silver(cli::rule(line = '.')))
+  # TODO: cut down code duplication
   is_docker_available()
-  callr_args <- list(exec_wait, args, std_out, std_err)
-  res <- callr::r(func = function(exec_wait, args, std_out, std_err) {
-    exec_wait(cmd = 'docker', args = args, std_out = std_out, std_err = std_err) 
-  }, args = callr_args, show = TRUE)
+  if (!is_server_connected()) {
+    callr_args <- list(exec_wait, args, std_out, std_err)
+    res <- callr::r(func = function(exec_wait, args, std_out, std_err) {
+      exec_wait(cmd = 'docker', args = args, std_out = std_out,
+                std_err = std_err)
+    }, args = callr_args, show = TRUE)
+  } else {
+    res <- exec_wait(cmd = 'docker', args = args, std_out = std_out,
+                     std_err = std_err)
+  }
   res == 0
 }
 
@@ -143,19 +150,19 @@ docker_cp <- function(origin, dest) {
                std_err = log_get('docker_err'))
   }
   server_fl_make <- function(fl) {
-    server_fl <- sub(pattern = "^.*:", replacement = "", fl)
+    server_fl <- sub(pattern = "^.*:", replacement = "", basename(fl))
     server_fl <- paste0(ssh_wd, '/', server_fl)
   }
   if (is_server_connected()) {
     if (!grepl(pattern = ':', x = origin)) {
-      server_fl <- server_fl_make(fl = dest)
+      server_fl <- server_fl_make(fl = origin)
       # local machine -> server
       res1 <- server_upload(fl = origin)
       # server -> container
       res2 <- cp(origin = server_fl, dest = dest)
       res <- res1 & res2
     } else {
-      server_fl <- server_fl_make(fl = origin)
+      server_fl <- server_fl_make(fl = dest)
       # container -> server
       res1 <- cp(origin = origin, dest = server_fl)
       # server -> local machine
