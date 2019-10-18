@@ -16,3 +16,4 @@
 ^inst/extdata/om..hello.world/.travis.yml$
 ^inst/extdata/om..hello.world/.Rproj.user$
 ^appveyor\.yml$
+^_appveyor_install_deps.R$
