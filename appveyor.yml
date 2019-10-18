@@ -41,7 +41,7 @@ build_script:
   #- docker version
   #- docker pull --platform=linux hello-world
   #- docker run hello-world
-  #- ps: Rscript -e 'install.packages("'"remotes"'")'
+  - ps: Rscript -e 'install.packages("'"remotes"'")'
   - travis-tool.sh install_deps
 
 before_test:
