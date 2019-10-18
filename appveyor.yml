@@ -28,7 +28,7 @@ environment:
 # https://github.com/appveyor-tests/win2k19-azure/blob/master/appveyor.yml
 build_script:
   # deps build always fails to install remotes
-  - Rscript -e install.packages('remotes', type='source')
+  #- Rscript -e install.packages('remotes', type='source')
   - travis-tool.sh install_deps
   - ps: Write-host "`n*** VM CONFIGURATION ***`n" -foregroundcolor yellow
   - ps: Write-host "`nCheck number of logical CPUs" -foregroundcolor green
