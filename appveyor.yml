@@ -34,7 +34,7 @@ build_script:
   - ps: gcim Win32_OperatingSystem | % { "$([int]($_.TotalVisibleMemorySize/1mb)) Gb" }
   - ps: Write-host "`n*** DOCKER ***`n" -foregroundcolor yellow
   - ps: Write-host "`nSwitch to linux engine"  -foregroundcolor green
-  - ps: Switch-DockerLinux
+  - docker-switch-linux
   - ps: Write-host "`nList local docker linux images"  -foregroundcolor green
   - docker images
   - docker run --rm busybox echo hello_world_busybox
