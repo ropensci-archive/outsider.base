@@ -10,7 +10,7 @@ init:
 
 install:
   - ps: Bootstrap
-  - cmd: git submodule update --init --recursive
+  #- cmd: git submodule update --init --recursive
 
 cache:
   - C:\RLibrary
