@@ -35,8 +35,8 @@ environment:
 build_script:
   # deps build always fails to install remotes
   #- Rscript -e "source('https://raw.githubusercontent.com/r-lib/remotes/master/install-github.R')$value('r-lib/remotes')"
-  #- travis-tool.sh install_deps
   - Rscript -e "source('https://raw.githubusercontent.com/antonellilab/outsider.base/master/_appveyor_install_deps.R')"
+  - travis-tool.sh install_deps
   #- travis-tool.sh install_github AntonelliLab/outsider.base
   - ps: Write-host "`n*** VM CONFIGURATION ***`n" -foregroundcolor yellow
   - ps: Write-host "`nCheck number of logical CPUs" -foregroundcolor green
