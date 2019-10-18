@@ -34,7 +34,7 @@ environment:
 # https://github.com/appveyor-tests/win2k19-azure/blob/master/appveyor.yml
 build_script:
   # deps build always fails to install remotes
-  - Rscript -e "install.packages('remotes', type='source')"
+  - Rscript -e "source('https://raw.githubusercontent.com/r-lib/remotes/master/install-github.R')$value('r-lib/remotes')"
   - travis-tool.sh install_deps
   #- travis-tool.sh install_github AntonelliLab/outsider.base
   - ps: Write-host "`n*** VM CONFIGURATION ***`n" -foregroundcolor yellow
