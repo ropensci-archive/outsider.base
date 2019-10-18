@@ -19,9 +19,12 @@ read_deps <- function(repo) {
 }
 
 # Install
-deps <- read_deps(repo = repo)
-for (dep in deps) {
-  cat('... Installing: [', dep, ']\n', sep='')
-  utils::install.packages(pkgs = dep,
-                          repos = 'https://ftp.acc.umu.se/mirror/CRAN/')
-}
+# deps <- read_deps(repo = repo)
+# deps <- deps[deps != 'utils']
+# for (dep in deps) {
+#   cat('... Installing: [', dep, ']\n', sep = '')
+#   utils::install.packages(pkgs = dep,
+#                           repos = 'https://ftp.acc.umu.se/mirror/CRAN/')
+# }
+source('https://raw.githubusercontent.com/r-lib/remotes/master/install-github.R')$value('r-lib/remotes')
+print("remotes" %in% rownames(installed.packages()))
