@@ -1,6 +1,5 @@
 # DO NOT CHANGE the "init" and "install" sections below
 image: Windows Server 2019
-platform: x64
 
 
 # Download script file from GitHub
@@ -19,7 +18,6 @@ cache:
 
 environment:
   global:
-    R_ARCH: x64
     WARNINGS_ARE_ERRORS: 1
     NOT_CRAN: true
     # env vars that may need to be set, at least temporarily, from time to time
@@ -33,14 +31,13 @@ environment:
 
 # Adapt as necessary starting from here
 
+before_build:
+  - travis-tool.sh dump_sysinfo
+
 # VM and Docker set-up
 # https://github.com/appveyor-tests/win2k19-azure/blob/master/appveyor.yml
 build_script:
-  # deps build always fails to install remotes
-  #- Rscript -e "source('https://raw.githubusercontent.com/r-lib/remotes/master/install-github.R')$value('r-lib/remotes')"
-  #- Rscript -e "source('https://raw.githubusercontent.com/antonellilab/outsider.base/master/_appveyor_install_deps.R')"
-  - ps: travis-tool.sh install_deps
-  #- travis-tool.sh install_github AntonelliLab/outsider.base
+  - travis-tool.sh install_deps
   - ps: Write-host "`n*** VM CONFIGURATION ***`n" -foregroundcolor yellow
   - ps: Write-host "`nCheck number of logical CPUs" -foregroundcolor green
   - ps: gcim Win32_Processor | % { "$($_.NumberOfLogicalProcessors) logical CPUs" }
@@ -52,19 +49,9 @@ build_script:
   - ps: Write-host "`nList local docker linux images"  -foregroundcolor green
   - docker images
   - docker run --rm busybox echo hello_world_busybox
-  #- docker version
-  #- docker pull --platform=linux hello-world
-  #- docker run hello-world
-
-before_test:
-  #- docker pull --platform=linux ubuntu
-  #- docker version
-  #- docker run 
-  #- docker build -t dombennett/om_hello_world inst/extdata/om..hello.world/inst/dockerfiles/latest/
-  #- docker run dombennett/om_hello_world /bin/echo testing
   
 test_script:
-  - ps: travis-tool.sh run_tests
+  - travis-tool.sh run_tests
 
 on_failure:
   - 7z a failure.zip *.Rcheck\*
