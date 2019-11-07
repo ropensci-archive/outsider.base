@@ -83,7 +83,8 @@ server_fetch <- function(verbose) {
 #' @family private-server
 server_upload <- function(fl) {
   session <- server_fetch(verbose = FALSE)
-  ssh::scp_upload(session = session, files = fl, to = ssh_wd, verbose = FALSE)
+  ssh::scp_upload(session = session, files = fl, to = ssh_wd,
+                  verbose = log_get('docker_out'))
   invisible(TRUE)
 }
 
@@ -106,7 +107,7 @@ server_download <- function(origin, dest) {
   }
   on.exit(unlink(x = tmp_flpth, recursive = TRUE, force = TRUE))
   ssh::scp_download(session = session, files = origin, to = tmp_flpth,
-                    verbose = TRUE)
+                    verbose = log_get('docker_out'))
   fl <- file.path(tmp_flpth, list.files(tmp_flpth))
   if (length(fl) > 1) {
     stop('More files than expected.')
