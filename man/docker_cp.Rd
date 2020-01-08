@@ -24,9 +24,12 @@ Files are uploaded/downloaded to/from the server based on the presence of
 ":" in origin/dest file paths.
 }
 \seealso{
-Other private-docker: \code{\link{container-class}},
-  \code{\link{docker_build}}, \code{\link{docker_cmd}},
-  \code{\link{docker_img_rm}},
-  \code{\link{docker_ps_count}}, \code{\link{docker_pull}}
+Other private-docker: 
+\code{\link{container-class}},
+\code{\link{docker_build}()},
+\code{\link{docker_cmd}()},
+\code{\link{docker_img_rm}()},
+\code{\link{docker_ps_count}()},
+\code{\link{docker_pull}()}
 }
 \concept{private-docker}

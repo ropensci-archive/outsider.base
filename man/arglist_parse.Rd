@@ -4,8 +4,12 @@
 \alias{arglist_parse}
 \title{Normalise arguments for docker container}
 \usage{
-arglist_parse(arglist, keyvals_to_drop = NULL, vals_to_drop = NULL,
-  normalise_paths = TRUE)
+arglist_parse(
+  arglist,
+  keyvals_to_drop = NULL,
+  vals_to_drop = NULL,
+  normalise_paths = TRUE
+)
 }
 \arguments{
 \item{arglist}{Arguments as character vector}

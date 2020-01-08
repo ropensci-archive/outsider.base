@@ -19,8 +19,9 @@ Return connected session to server.
 See \code{\link[ssh]{ssh_connect}} for more details.
 }
 \seealso{
-Other private-server: \code{\link{is_server_connected}},
-  \code{\link{server_download}},
-  \code{\link{server_upload}}
+Other private-server: 
+\code{\link{is_server_connected}()},
+\code{\link{server_download}()},
+\code{\link{server_upload}()}
 }
 \concept{private-server}

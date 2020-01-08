@@ -4,8 +4,7 @@
 \alias{exec_internal}
 \title{Execute system commands and wait for response}
 \usage{
-exec_internal(cmd, args = NULL, std_in = NULL, error = TRUE,
-  timeout = 0)
+exec_internal(cmd, args = NULL, std_in = NULL, error = TRUE, timeout = 0)
 }
 \arguments{
 \item{cmd}{Command}
@@ -27,6 +26,7 @@ server is connected arguments are passed to
 \code{\link[ssh]{ssh_exec_internal}} instead.
 }
 \seealso{
-Other private-sys: \code{\link{exec_wait}}
+Other private-sys: 
+\code{\link{exec_wait}()}
 }
 \concept{private-sys}

@@ -17,7 +17,8 @@ Return TRUE or FALSE for whether character(s) is a valid
 filepath.
 }
 \seealso{
-Other private: \code{\link{log_get}},
-  \code{\link{to_basename}}
+Other private: 
+\code{\link{log_get}()},
+\code{\link{to_basename}()}
 }
 \concept{private}

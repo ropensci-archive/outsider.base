@@ -17,7 +17,9 @@ Upload file/folder to connected server. File is placed in
 working dir on server.
 }
 \seealso{
-Other private-server: \code{\link{is_server_connected}},
-  \code{\link{server_download}}, \code{\link{server_fetch}}
+Other private-server: 
+\code{\link{is_server_connected}()},
+\code{\link{server_download}()},
+\code{\link{server_fetch}()}
 }
 \concept{private-server}

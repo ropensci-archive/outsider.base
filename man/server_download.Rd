@@ -19,7 +19,9 @@ Download file/folder from connected server. File is copied to
 a temporary folder before transferred to desired destination.
 }
 \seealso{
-Other private-server: \code{\link{is_server_connected}},
-  \code{\link{server_fetch}}, \code{\link{server_upload}}
+Other private-server: 
+\code{\link{is_server_connected}()},
+\code{\link{server_fetch}()},
+\code{\link{server_upload}()}
 }
 \concept{private-server}

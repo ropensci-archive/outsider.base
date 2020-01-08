@@ -3,7 +3,6 @@
 \docType{package}
 \name{outsider.base}
 \alias{outsider.base}
-\alias{outsider.base-package}
 \title{outsider.base: Base Package for outsider.}
 \description{
 For more information visit the outsider website

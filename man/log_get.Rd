@@ -4,8 +4,7 @@
 \alias{log_get}
 \title{Return log stream option}
 \usage{
-log_get(log = c("program_out", "program_err", "docker_out",
-  "docker_err"))
+log_get(log = c("program_out", "program_err", "docker_out", "docker_err"))
 }
 \arguments{
 \item{log}{Log stream}
@@ -15,7 +14,8 @@ Return the log stream setting for a given stream. If the stream
 is not set, the function will return TRUE (i.e. prints to console).
 }
 \seealso{
-Other private: \code{\link{is_filepath}},
-  \code{\link{to_basename}}
+Other private: 
+\code{\link{is_filepath}()},
+\code{\link{to_basename}()}
 }
 \concept{private}

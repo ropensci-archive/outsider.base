@@ -8,8 +8,14 @@
 \alias{run.outsider}
 \title{Construct outsider object}
 \usage{
-outsider_init(pkgnm, cmd = NA, arglist = NULL, wd = NULL,
-  files_to_send = NULL, ignore_errors = FALSE)
+outsider_init(
+  pkgnm,
+  cmd = NA,
+  arglist = NULL,
+  wd = NULL,
+  files_to_send = NULL,
+  ignore_errors = FALSE
+)
 
 run(x, ...)
 

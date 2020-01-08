@@ -62,9 +62,12 @@ after the program has run.
 If no \code{send} or \code{rtrn} specified, returns TRUE.
 }
 \seealso{
-Other private-docker: \code{\link{docker_build}},
-  \code{\link{docker_cmd}}, \code{\link{docker_cp}},
-  \code{\link{docker_img_rm}},
-  \code{\link{docker_ps_count}}, \code{\link{docker_pull}}
+Other private-docker: 
+\code{\link{docker_build}()},
+\code{\link{docker_cmd}()},
+\code{\link{docker_cp}()},
+\code{\link{docker_img_rm}()},
+\code{\link{docker_ps_count}()},
+\code{\link{docker_pull}()}
 }
 \concept{private-docker}

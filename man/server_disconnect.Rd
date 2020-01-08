@@ -22,6 +22,7 @@ library(outsider.base)
 # server_disconnect()
 }
 \seealso{
-Other public-server: \code{\link{server_connect}}
+Other public-server: 
+\code{\link{server_connect}()}
 }
 \concept{public-server}

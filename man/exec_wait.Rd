@@ -4,8 +4,14 @@
 \alias{exec_wait}
 \title{Execute system commands and wait for response}
 \usage{
-exec_wait(cmd, args = NULL, std_out = stdout(), std_err = stderr(),
-  std_in = NULL, timeout = 0)
+exec_wait(
+  cmd,
+  args = NULL,
+  std_out = stdout(),
+  std_err = stderr(),
+  std_in = NULL,
+  timeout = 0
+)
 }
 \arguments{
 \item{cmd}{Command}
@@ -29,6 +35,7 @@ is connected arguments are passed to \code{\link[ssh]{ssh_exec_wait}}
 instead.
 }
 \seealso{
-Other private-sys: \code{\link{exec_internal}}
+Other private-sys: 
+\code{\link{exec_internal}()}
 }
 \concept{private-sys}
