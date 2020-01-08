@@ -111,6 +111,7 @@ copy.container <- function(x, send = NULL, rtrn = NULL) {
   if (!is.null(send)) {
     res <- TRUE
     for (host_flpth in send) {
+      # TODO: ensure windows files are suitable for linux?
       res <- res & docker_cp(origin = host_flpth,
                              dest = paste0(cntnr, ':', '/working_dir/'))
     }

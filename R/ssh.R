@@ -82,6 +82,7 @@ server_fetch <- function(verbose) {
 #' @return Logical
 #' @family private-server
 server_upload <- function(fl) {
+  # TODO: ensure windows files are suitable for linux?
   session <- server_fetch(verbose = FALSE)
   ssh::scp_upload(session = session, files = fl, to = ssh_wd,
                   verbose = log_get('docker_out'))
