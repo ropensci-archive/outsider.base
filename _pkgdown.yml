@@ -1,0 +1,53 @@
+
+reference:
+  - title: Arguments
+    desc: Handling arguments
+    contents:
+      - arglist_get
+      - arglist_parse
+      - dirpath_get
+      - filestosend_get
+      - wd_get
+  - title: Docker
+    desc: Docker interaction
+    contents:
+      - docker_img_ls
+      - image_install
+      - is_docker_available
+      - outsider_init
+      - run
+  - title: Module
+    desc: Module/package managment
+    contents:
+      - is_installed
+      - meta_get
+      - modules_list
+      - pkg_install
+      - uninstall
+  - title: Console
+    desc: Control text to console
+    contents:
+      - cat_line
+      - char
+      - func
+      - log_set
+      - stat
+  - title: SSH
+    desc: Connect/disconnect to remote
+    contents:
+      - server_connect
+      - server_disconnect
+# ignore private
+
+navbar:
+  type: inverse
+  structure:
+    structure:
+    left:  [reference, news]
+    right: [github]
+  components:
+    home: ~
+    articles: ~
+  right:
+    - icon: fa-github
+      href: https://github.com/antonellilab/outsider.base
