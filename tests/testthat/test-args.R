@@ -53,8 +53,14 @@ test_that('dirpath_get() works', {
   tmp <- tempdir()
   expect_equal(dirpath_get(tmp), tmp)
   # drop filename
-  res <- dirpath_get(file.path(tmp, 'afile.txt'))
-  expect_false(grepl(res, 'afile.txt'))
+  last8_get <- function(txt) {
+    substr(x = txt, start = nchar(txt) - 8, stop = nchar(txt))
+  }
+  flnm <- 'afile.txt'
+  test_flpth <- file.path(tmp, flnm)
+  res_flpth <- dirpath_get(test_flpth)
+  expect_true(last8_get(test_flpth) == flnm)
+  expect_true(last8_get(res_flpth) != flnm)
 })
 test_that('arglist_parse() works', {
   # nothin in, nothin out
