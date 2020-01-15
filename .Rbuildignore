@@ -17,4 +17,7 @@
 ^inst/extdata/om..hello.world/.Rproj.user$
 ^appveyor\.yml$
 ^_appveyor_install_deps.R$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
 ^\.github$
