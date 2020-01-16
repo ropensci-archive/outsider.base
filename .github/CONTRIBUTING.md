@@ -6,7 +6,7 @@ following git commands.
 
 ```{bash}
 # clone the main repo
-git clone https://github.com/AntonelliLab/outsider.base.git
+git clone https://github.com/ropensci/outsider.base.git
 # initate and download the latest repo of the submodule
 git submodule update --init --recursive
 ```
@@ -14,5 +14,5 @@ git submodule update --init --recursive
 Read up more on submodules [here](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
 See the main `outsider` package's
-[CONTRIBUTING.md](https://github.com/AntonelliLab/outsider/blob/master/CONTRIBUTING.md)
+[CONTRIBUTING.md](https://github.com/ropensci/outsider/blob/master/CONTRIBUTING.md)
 for more information on contributing to the `outsider` project in general.

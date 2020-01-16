@@ -6,5 +6,5 @@
 \title{outsider.base: Base Package for outsider.}
 \description{
 For more information visit the outsider website
-(\url{https://antonellilab.github.io/outsider/}).
+(\url{https://docs.ropensci.org/outsider/}).
 }

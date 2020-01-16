@@ -3,7 +3,7 @@ ssh_wd <- '.outsider_workdir'
 readme_text <- "outsider working directory. This folder contains files/folders
 sent to this machine\'s Docker.
 
-For more information visit, https://github.com/antonellilab/outsider"
+For more information visit, https://docs.ropensci.org/outsider"
 
 # Public ----
 #' @name server_connect

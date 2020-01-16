@@ -29,14 +29,16 @@ Authors@R: c(
                     role = "rev",
                     email = "bob@rud.is"))
 Maintainer: Dom Bennett <dominic.john.bennett@gmail.com>
-Description: Base package for 'outsider' <https://github.com/AntonelliLab/outsider>.
+Description: Base package for 'outsider' <https://github.com/ropensci/outsider>.
+ This package has been peer-reviewed by rOpenSci (v. 0.1.0).
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
 SystemRequirements: docker (>=18.0.0)
-URL: https://antonellilab.github.io/outsider.base
-BugReports: https://github.com/antonellilab/outsider.base/issues
+URL: https://docs.ropensci.org/outsider.base,
+    https://ropensci.github.io/outsider.base
+BugReports: https://github.com/ropensci/outsider.base/issues
 Language: en-GB
 Depends:
     R (>= 3.3.0)

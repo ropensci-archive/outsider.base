@@ -1,7 +1,7 @@
 #' outsider.base: Base Package for outsider.
 #' 
 #' For more information visit the outsider website
-#' (\url{https://antonellilab.github.io/outsider/}).
+#' (\url{https://docs.ropensci.org/outsider/}).
 #'
 #' @docType package
 #' @name outsider.base

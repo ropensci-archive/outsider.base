@@ -94,7 +94,7 @@ all filepaths in the arglist will be converted to basenames." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/antonellilab/outsider.base">
+  <a href="https://github.com/ropensci/outsider.base">
     <span class="fa fa-github"></span>
      
   </a>
@@ -178,7 +178,7 @@ file path.</p>
 #&gt; [3] "-b"                                                                  
 #&gt; [4] "model2"                                                              
 #&gt; [5] "-wd"                                                                 
-#&gt; [6] "/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmpYw65iS/results"</div><div class='input'><span class='co'># make paths relative, necessary for Docker:</span>
+#&gt; [6] "/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmpTceL5i/results"</div><div class='input'><span class='co'># make paths relative, necessary for Docker:</span>
 <span class='co'>#   paths must be relative to the working directory in the container</span>
 (<span class='fu'>arglist_parse</span>(<span class='kw'>arglist</span> <span class='kw'>=</span> <span class='no'>arglist</span>, <span class='kw'>normalise_paths</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; [1] "-a"         "10"         "-b"         "model2"     "-wd"       
 #&gt; [6] "results"    "--unwanted"</div><div class='input'>

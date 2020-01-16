@@ -50,4 +50,4 @@ navbar:
     articles: ~
   right:
     - icon: fa-github
-      href: https://github.com/antonellilab/outsider.base
+      href: https://github.com/ropensci/outsider.base

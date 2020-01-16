@@ -92,7 +92,7 @@ used to identify files/folders for sending to the Docker container." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/antonellilab/outsider.base">
+  <a href="https://github.com/ropensci/outsider.base">
     <span class="fa fa-github"></span>
      
   </a>
@@ -150,11 +150,11 @@ used to identify files/folders for sending to the Docker container.</p>
 
 <span class='co'># identify files to be sent to container</span>
 <span class='no'>arglist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'-in'</span>, <span class='no'>file1</span>, <span class='st'>'-out'</span>, <span class='no'>file2</span>)
-(<span class='fu'>filestosend_get</span>(<span class='kw'>arglist</span> <span class='kw'>=</span> <span class='no'>arglist</span>))</div><div class='output co'>#&gt; [1] "/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmpYw65iS/results/file1"
-#&gt; [2] "/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmpYw65iS/results/file2"</div><div class='input'><span class='co'># works with -wd</span>
+(<span class='fu'>filestosend_get</span>(<span class='kw'>arglist</span> <span class='kw'>=</span> <span class='no'>arglist</span>))</div><div class='output co'>#&gt; [1] "/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmpTceL5i/results/file1"
+#&gt; [2] "/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmpTceL5i/results/file2"</div><div class='input'><span class='co'># works with -wd</span>
 <span class='no'>arglist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'-in'</span>, <span class='st'>'file1'</span>, <span class='st'>'-out'</span>, <span class='st'>'file2'</span>, <span class='st'>'-wd'</span>, <span class='no'>wd</span>)
-(<span class='fu'>filestosend_get</span>(<span class='kw'>arglist</span> <span class='kw'>=</span> <span class='no'>arglist</span>, <span class='kw'>wd</span> <span class='kw'>=</span> <span class='no'>wd</span>))</div><div class='output co'>#&gt; [1] "/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmpYw65iS/results/file1"
-#&gt; [2] "/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmpYw65iS/results/file2"</div><div class='input'>
+(<span class='fu'>filestosend_get</span>(<span class='kw'>arglist</span> <span class='kw'>=</span> <span class='no'>arglist</span>, <span class='kw'>wd</span> <span class='kw'>=</span> <span class='no'>wd</span>))</div><div class='output co'>#&gt; [1] "/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmpTceL5i/results/file1"
+#&gt; [2] "/var/folders/x9/m8kwpxps2v93xk52zqzm5lkh0000gp/T//RtmpTceL5i/results/file2"</div><div class='input'>
 
 <span class='co'># clean-up</span>
 <span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>wd</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
