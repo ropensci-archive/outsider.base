@@ -1,6 +1,6 @@
 Package: outsider.base
 Type: Package
-Title: Base Package for "Outsider"
+Title: Base Package for 'Outsider'
 Version: 0.1.0
 Authors@R: c(
             person("Dom", "Bennett",
@@ -23,12 +23,12 @@ Authors@R: c(
                     role = "rev",
                     email = "annakrystalli@googlemail.com"))
 Maintainer: Dom Bennett <dominic.john.bennett@gmail.com>
-Description: Base package for "outsider" <https://github.com/ropensci/outsider>.
-    The "outsider" package and its sister packages enable the installation and
-    running of external, command-line software witin R. This base package is a
-    key dependency of the user-facing "outsider" package as it provides the
-    utilities for interfacing between "Docker" <https://www.docker.com> and R.
-    It is intended that end-users of "outsider" do not directly work with this
+Description: Base package for 'outsider' <https://github.com/ropensci/outsider>.
+    The 'outsider' package and its sister packages enable the installation and
+    running of external, command-line software within R. This base package is a
+    key dependency of the user-facing 'outsider' package as it provides the
+    utilities for interfacing between 'Docker' <https://www.docker.com> and R.
+    It is intended that end-users of 'outsider' do not directly work with this
     base package.
 License: MIT + file LICENSE
 Encoding: UTF-8
