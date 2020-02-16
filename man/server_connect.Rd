@@ -20,10 +20,12 @@ set-up for \code{outsider} interaction.
 library(outsider.base)
 
 # NOT RUN
-# session <- ssh::ssh_connect(host = '[INSERT HOST IP]')
-# server_connect(session = session)
-# # run outsider.base commands, when finished
-# server_disconnect()
+\dontrun{
+session <- ssh::ssh_connect(host = '[INSERT HOST IP]')
+server_connect(session = session)
+# run outsider.base commands, when finished
+server_disconnect()
+}
 }
 \seealso{
 Other public-server: 
