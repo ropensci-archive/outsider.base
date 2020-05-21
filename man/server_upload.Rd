@@ -16,6 +16,9 @@ Logical
 Upload file/folder to connected server. File is placed in
 working dir on server.
 }
+\details{
+This requires installation of \code{ssh} package.
+}
 \seealso{
 Other private-server: 
 \code{\link{is_server_connected}()},

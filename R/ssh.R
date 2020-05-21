@@ -19,6 +19,7 @@ For more information visit, https://docs.ropensci.org/outsider"
 #' @title Connect to a server
 #' @description Connect to a server, make accessible to \code{outsider} and
 #' set-up for \code{outsider} interaction.
+#' @details This requires installation of \code{ssh} package.
 #' @return logical
 #' @param session ssh session, see \code{\link[ssh]{ssh_connect}}
 #' @family public-server
@@ -38,6 +39,7 @@ server_connect <- function(session) {
 #' @name server_disconnect
 #' @title Disconnect from a server
 #' @description Disconnect from a server and remove from \code{outsider}
+#' @details This requires installation of \code{ssh} package.
 #' @return logical
 #' @family public-server
 #' @example examples/server.R
@@ -56,6 +58,7 @@ server_disconnect <- function() {
 #' @title Is server connected?
 #' @description Return TRUE if an \code{ssh} session exists with which
 #' \code{outsider} can interact.
+#' @details This requires installation of \code{ssh} package.
 #' @return logical
 #' @family private-server
 is_server_connected <- function() {
@@ -86,6 +89,7 @@ server_fetch <- function(verbose) {
 #' @title Upload to server
 #' @description Upload file/folder to connected server. File is placed in
 #' working dir on server.
+#' @details This requires installation of \code{ssh} package.
 #' @param fl File/folder to be transferred.
 #' @return Logical
 #' @family private-server

@@ -25,5 +25,5 @@ log_set(log = 'docker_out', val = TRUE)
 hello_world()
 
 # clean-up
-uninstall(repo)
+uninstall(pkgnm)
 }

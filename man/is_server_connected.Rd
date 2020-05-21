@@ -13,6 +13,9 @@ logical
 Return TRUE if an \code{ssh} session exists with which
 \code{outsider} can interact.
 }
+\details{
+This requires installation of \code{ssh} package.
+}
 \seealso{
 Other private-server: 
 \code{\link{server_download}()},
