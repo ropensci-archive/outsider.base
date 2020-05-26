@@ -1,7 +1,7 @@
 Package: outsider.base
 Type: Package
 Title: Base Package for 'Outsider'
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(
             person("Dom", "Bennett",
                     role = c("aut", "cre"),

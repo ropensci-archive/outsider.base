@@ -1,4 +1,7 @@
 context('Testing \'ssh\'')
+if(!requireNamespace("ssh", quietly = TRUE)) {
+  skip("ssh package not available.")
+}
 session <- list('connected' = TRUE, 'user' = 'test_user',
                 'host' = 'test_host')
 test_that('server connection, fetch and disconnection functions work', {
