@@ -37,7 +37,7 @@ is_docker_available <- function(call_error = TRUE) {
 #' @family private-check
 is_docker_installed <- function() {
   success <- tryCatch(expr = {
-    res <- exec_internal(cmd = 'docker', args = '--help')
+    res <- exec_internal(cmd = 'docker', args = '--help', with_ssh=FALSE)
     res[['status']] == 0
   }, error = function(e) {
     FALSE
@@ -53,7 +53,7 @@ is_docker_installed <- function() {
 #' @family private-check
 is_docker_running <- function() {
   success <- tryCatch(expr = {
-    res <- exec_internal(cmd = 'docker', args = 'ps')
+    res <- exec_internal(cmd = 'docker', args = 'ps', with_ssh=FALSE)
     res[['status']] == 0
   }, error = function(e) {
     FALSE

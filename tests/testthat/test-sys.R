@@ -1,4 +1,7 @@
 context('Testing \'sys\'')
+if(!requireNamespace("ssh", quietly = TRUE)) {
+  skip("ssh package not available.")
+}
 test_that('exec_wait() works', {
   with_mock(
     `outsider.base:::is_server_connected` = function() FALSE,

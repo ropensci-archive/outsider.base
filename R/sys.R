@@ -9,11 +9,12 @@
 #' @param std_err Standard error
 #' @param std_in Standard in
 #' @param timeout Timeout
+#' @param with_ssh Try and run with ssh, default TRUE
 #' @return logical
 #' @family private-sys
 exec_wait <- function(cmd, args = NULL, std_out = stdout(), std_err = stderr(), 
-                      std_in = NULL, timeout = 0) {
-  if (is_server_connected()) {
+                      std_in = NULL, timeout = 0, with_ssh = TRUE) {
+  if (with_ssh && is_server_connected()) {
     session <- server_fetch(verbose = 'exec' %in% args)
     command <- paste0(cmd, ' ', paste0(args, collapse = ' '))
     res <- ssh::ssh_exec_wait(session = session, command = command,
@@ -35,11 +36,12 @@ exec_wait <- function(cmd, args = NULL, std_out = stdout(), std_err = stderr(),
 #' @param std_in Standard in
 #' @param error Call an error? T/F
 #' @param timeout Timeout
+#' @param with_ssh Try and run with ssh, default TRUE
 #' @return logical
 #' @family private-sys
 exec_internal <- function(cmd, args = NULL, std_in = NULL, error = TRUE,
-                          timeout = 0) {
-  if (is_server_connected()) {
+                          timeout = 0, with_ssh = TRUE) {
+  if (with_ssh && is_server_connected()) {
     session <- server_fetch(verbose = FALSE)
     command <- paste0(cmd, ' ', paste0(args, collapse = ' '))
     res <- ssh::ssh_exec_internal(session = session, command = command,
