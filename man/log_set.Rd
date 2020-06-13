@@ -17,7 +17,7 @@ Set if and where to send the console streams of the outsider
 modules.
 }
 \details{
-See \code{\link[sys:exec]{exec}}.
+See `sys::exec`.
 }
 \examples{
 \donttest{

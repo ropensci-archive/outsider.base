@@ -9,7 +9,7 @@
 #' @param val Either logical, file or connection.
 #' @example examples/log_set.R
 #' @details
-#' See \code{\link[sys:exec]{exec}}.
+#' See `sys::exec`.
 #' @return NULL
 #' @export
 #' @family user

@@ -16,7 +16,7 @@ ssh session
 Return connected session to server.
 }
 \details{
-See \code{\link[ssh:ssh_connect]{ssh_connect}} for more details.
+See `ssh::ssh_connect` for more details.
 }
 \seealso{
 Other private-server: 

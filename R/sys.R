@@ -1,8 +1,8 @@
 #' @name exec_wait
 #' @title Execute system commands and wait for response
-#' @description Passes arguments to \code{\link[sys:exec_wait]{exec_wait}}, if
+#' @description Passes arguments to `sys::exec_wait`, if
 #' a server is connected arguments are passed to
-#' \code{\link[ssh:ssh_exec_wait]{ssh_exec_wait}} instead.
+#' `ssh::ssh_exec_wait` instead.
 #' @param cmd Command
 #' @param args Arguments
 #' @param std_out Standard out
@@ -29,9 +29,9 @@ exec_wait <- function(cmd, args = NULL, std_out = stdout(), std_err = stderr(),
 #' @name exec_internal
 #' @title Execute system commands and wait for response
 #' @description Passes arguments to
-#' \code{\link[sys:exec_internal]{exec_internal}}, if a server is connected
+#' `sys::exec_internal`, if a server is connected
 #' arguments are passed to
-#' \code{\link[ssh:ssh_exec_internal]{ssh_exec_internal}} instead.
+#' `ssh::ssh_exec_internal` instead.
 #' @param cmd Command
 #' @param args Arguments
 #' @param std_in Standard in

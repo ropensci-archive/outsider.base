@@ -31,9 +31,9 @@ logical
 }
 \description{
 Passes arguments to
-\code{\link[sys:exec_internal]{exec_internal}}, if a server is connected
+`sys::exec_internal`, if a server is connected
 arguments are passed to
-\code{\link[ssh:ssh_exec_internal]{ssh_exec_internal}} instead.
+`ssh::ssh_exec_internal` instead.
 }
 \seealso{
 Other private-sys: 

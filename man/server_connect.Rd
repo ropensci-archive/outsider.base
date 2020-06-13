@@ -7,7 +7,7 @@
 server_connect(session)
 }
 \arguments{
-\item{session}{ssh session, see \code{\link[ssh:ssh_connect]{ssh_connect}}}
+\item{session}{ssh session, see `ssh::ssh_connect`.}
 }
 \value{
 logical

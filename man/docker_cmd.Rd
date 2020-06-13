@@ -10,10 +10,10 @@ docker_cmd(args, std_out = TRUE, std_err = TRUE)
 \item{args}{Vector of arguments}
 
 \item{std_out}{if and where to direct child process STDOUT.
-See \code{\link[sys:exec]{exec}}.}
+See `sys::exec`.}
 
 \item{std_err}{if and where to direct child process STDERR.
-See \code{\link[sys:exec]{exec}}.}
+See `sys::exec`.}
 }
 \value{
 Logical
