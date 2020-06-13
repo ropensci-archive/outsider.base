@@ -62,9 +62,12 @@ server_disconnect <- function() {
 #' @return logical
 #' @family private-server
 is_server_connected <- function() {
-  .sshpackage_check()
-  'outsider-ssh-session' %in% names(options()) &&
-    ssh::ssh_info(getOption(x = 'outsider-ssh-session'))[['connected']]
+  res <- FALSE
+  if ('outsider-ssh-session' %in% names(options())) {
+    .sshpackage_check()
+    res <- ssh::ssh_info(getOption(x = 'outsider-ssh-session'))[['connected']]
+  }
+  res
 }
 
 #' @name server_fetch

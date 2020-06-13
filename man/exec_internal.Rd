@@ -4,7 +4,14 @@
 \alias{exec_internal}
 \title{Execute system commands and wait for response}
 \usage{
-exec_internal(cmd, args = NULL, std_in = NULL, error = TRUE, timeout = 0)
+exec_internal(
+  cmd,
+  args = NULL,
+  std_in = NULL,
+  error = TRUE,
+  timeout = 0,
+  with_ssh = TRUE
+)
 }
 \arguments{
 \item{cmd}{Command}
@@ -16,6 +23,8 @@ exec_internal(cmd, args = NULL, std_in = NULL, error = TRUE, timeout = 0)
 \item{error}{Call an error? T/F}
 
 \item{timeout}{Timeout}
+
+\item{with_ssh}{Try and run with ssh, default TRUE}
 }
 \value{
 logical

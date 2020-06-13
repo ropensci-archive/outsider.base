@@ -10,7 +10,8 @@ exec_wait(
   std_out = stdout(),
   std_err = stderr(),
   std_in = NULL,
-  timeout = 0
+  timeout = 0,
+  with_ssh = TRUE
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ exec_wait(
 \item{std_in}{Standard in}
 
 \item{timeout}{Timeout}
+
+\item{with_ssh}{Try and run with ssh, default TRUE}
 }
 \value{
 logical
