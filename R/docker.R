@@ -67,9 +67,9 @@ is_docker_running <- function() {
 #' @description Runs a docker command with provided arguments
 #' @param args Vector of arguments
 #' @param std_out if and where to direct child process STDOUT.
-#' See \code{\link[sys]{exec}}.
+#' See \code{\link[sys:exec]{exec}}.
 #' @param std_err if and where to direct child process STDERR.
-#' See \code{\link[sys]{exec}}.
+#' See \code{\link[sys:exec]{exec}}.
 #' @return Logical
 #' @family private-docker
 docker_cmd <- function(args, std_out = TRUE, std_err = TRUE) {

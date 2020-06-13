@@ -33,9 +33,9 @@ exec_wait(
 logical
 }
 \description{
-Passes arguments to \code{\link[sys]{exec_wait}}, if a server
-is connected arguments are passed to \code{\link[ssh]{ssh_exec_wait}}
-instead.
+Passes arguments to \code{\link[sys:exec_wait]{exec_wait}}, if
+a server is connected arguments are passed to
+\code{\link[ssh:ssh_exec_wait]{ssh_exec_wait}} instead.
 }
 \seealso{
 Other private-sys: 
