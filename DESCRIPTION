@@ -32,8 +32,7 @@ Description: Base package for 'outsider' <https://github.com/ropensci/outsider>.
     base package.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 SystemRequirements: docker (>=18.0.0)
 URL: https://docs.ropensci.org/outsider.base,
     https://github.com/ropensci/outsider.base
@@ -45,14 +44,12 @@ Imports:
     utils (>= 3.1),
     crayon,
     devtools (>= 1.1),
-    jsonlite (>= 1.1),
+    pkgload,
     sys (>= 2.1),
     yaml (>= 2.0),
     callr (>= 3.0.0),
-    withr (>= 2.0),
     tibble,
-    cli,
-    praise
+    cli
 Suggests:
     ssh,
     testthat (>= 2.0)

@@ -73,7 +73,7 @@ uninstall <- function(pkgnm) {
     # TODO: are we sure this would remove all tagged version of an image?
     img <- meta_get(pkgnm = pkgnm)[['image']]
     try(docker_img_rm(img = img), silent = TRUE)
-    devtools::uninstall(pkg = devtools::inst(pkgnm), quiet = TRUE,
+    devtools::uninstall(pkg = pkgload::inst(pkgnm), quiet = TRUE,
                         unload = TRUE)
     }
   invisible(!is_installed(pkgnm = pkgnm))
