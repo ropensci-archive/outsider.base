@@ -67,7 +67,7 @@ The \code{arglist}, \code{wd} or \code{files_to_send} do not need to be
 defined for the outsider to be run.
 }
 \examples{
-\donttest{
+\dontrun{
 # Set-up: install "hello.world", ships with ubuntu
 # we can make simple commands in bash via R using the module
 library(outsider.base)

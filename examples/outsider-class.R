@@ -1,4 +1,4 @@
-\donttest{
+\dontrun{
 # Set-up: install "hello.world", ships with ubuntu
 # we can make simple commands in bash via R using the module
 library(outsider.base)

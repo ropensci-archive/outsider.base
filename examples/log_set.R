@@ -1,4 +1,4 @@
-\donttest{
+\dontrun{
 library(outsider.base)
 
 # Manually install example module

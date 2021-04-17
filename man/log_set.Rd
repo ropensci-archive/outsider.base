@@ -20,7 +20,7 @@ modules.
 See `sys::exec`.
 }
 \examples{
-\donttest{
+\dontrun{
 library(outsider.base)
 
 # Manually install example module

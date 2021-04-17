@@ -1,7 +1,7 @@
 Package: outsider.base
 Type: Package
 Title: Base Package for 'Outsider'
-Version: 0.1.3
+Version: 0.1.4
 Authors@R: c(
             person("Dom", "Bennett",
                     role = c("aut", "cre"),
@@ -34,7 +34,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.1.1
 SystemRequirements: docker (>=18.0.0)
-URL: https://docs.ropensci.org/outsider.base,
+URL: https://docs.ropensci.org/outsider.base/,
     https://github.com/ropensci/outsider.base
 BugReports: https://github.com/ropensci/outsider.base/issues
 Language: en-GB
